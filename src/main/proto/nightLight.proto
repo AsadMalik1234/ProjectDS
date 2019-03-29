@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.Muhammad.example.NightLight";
+option java_outer_classname = "NightLightProto";
+
+package NightLight;
+/**
+ * This is an example of a protobuf message.
+ */
+
+service Light{
+    rpc LightOn(LightActionRequest) returns (LightActionResponse){}
+    rpc LightOff(LightActionRequest) returns (LightActionResponse){}
+
+}
+
+message Lighting{
+string LightON = 1;
+string LightOff = 2;
+ 
+}
+
+message LightActionRequest {
+    Lighting lighting = 1;
+}
+
+message LightActionResponse {
+    string lightstatus = 1;
+}
+
+
+

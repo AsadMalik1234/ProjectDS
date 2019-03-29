@@ -1,0 +1,33 @@
+
+
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.asad.examples.greet";
+option java_outer_classname = "GreetProto";
+
+
+package greet;
+
+
+service GreetService {
+    
+   // Unary
+   rpc Greet(GreetRequest) returns (GreetResponse) {};
+   
+   }
+
+
+message Greeting {
+    string first_name = 1;
+    string last_name = 2;
+}
+
+message GreetRequest {
+    Greeting greeting = 1;
+}
+
+message GreetResponse {
+    string result = 1;
+}
