@@ -5,45 +5,39 @@
  */
 package client;
 
-import clientui.NightLightClientGUI;
+import clientui.SpeakerClientGUI;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.Muhammad.example.NightLight.LightGrpc;
-import org.Muhammad.example.NightLight.LightOffRequest;
-import org.Muhammad.example.NightLight.LightOffResponse;
-import org.Muhammad.example.NightLight.LightOnRequest;
-import org.Muhammad.example.NightLight.LightOnResponse;
-import org.Muhammad.example.NightLight.Lighting;
+import org.Muhammad.example.speaker.SpeakerGrpc;
 
 /**
  *
  * @author asadmalik
  */
-public class NightLightClient implements ServiceObserver {
+public class SpeakerClient implements ServiceObserver {
 
-    protected NightLightClientGUI ui;
+    protected SpeakerClientGUI ui;
     private final String serviceType;
     private final String name;
     private ManagedChannel channel;
     protected ServiceDescription current;
-    private LightGrpc.LightBlockingStub blockingStub;
+    private SpeakerGrpc.SpeakerBlockingStub blockingStub;
 
-    public NightLightClient() {
+    public SpeakerClient() {
 
-        serviceType = "_Light._udp.local.";
-        name = "Light";
+        serviceType = "_Speaker._udp.local.";
+        name = "Speaker";
         jmDNSServiceTracker clientManager = jmDNSServiceTracker.getInstance();
         clientManager.register(this);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ui = new NightLightClientGUI(NightLightClient.this);
+                ui = new SpeakerClientGUI(SpeakerClient.this);
                 ui.setVisible(true);
             }
         });
-
     }
 
     String getServiceType() {
@@ -66,7 +60,7 @@ public class NightLightClient implements ServiceObserver {
         channel = ManagedChannelBuilder.forAddress(service.getAddress(), service.getPort())
                 .usePlaintext(true)
                 .build();
-        blockingStub = LightGrpc.newBlockingStub(channel);
+        blockingStub = SpeakerGrpc.newBlockingStub(channel);
     }
 
     public boolean interested(String type) {
@@ -80,45 +74,16 @@ public class NightLightClient implements ServiceObserver {
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
-
-    public void lightOn() {
-
-        Lighting lighting = Lighting.newBuilder()
-                .setLightOn("Please Turn Light On")
-                .build();
-
-        LightOnRequest lightOnRequest = LightOnRequest.newBuilder()
-                .setLighting(lighting)
-                .build();
-
-        LightOnResponse LightOnResponse = blockingStub.lightOn(lightOnRequest);
-        System.out.println(LightOnResponse.getLightstatus());
-        ui.append(LightOnResponse.getLightstatus());
-
+    
+    
+    
+    public void speakerMode(){
+        
     }
-
-    public void lightOff() {
-
-        Lighting lighting = Lighting.newBuilder()
-                .setLightOff("Please turn Light Off")
-                .build();
-
-        LightOffRequest lightOffRequest = LightOffRequest.newBuilder()
-                .setLighting(lighting)
-                .build();
-
-        LightOffResponse LightOffResponse = blockingStub.lightOff(lightOffRequest);
-        System.out.println(LightOffResponse.getLightstatus());
-        ui.append(LightOffResponse.getLightstatus());
-
-    }
+    
 
     public void switchService(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static void main(String[] args) {
-        new NightLightClient();
     }
 
 }

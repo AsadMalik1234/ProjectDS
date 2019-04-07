@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+/**
+ * This is an example of a protobuf message.
+ */
+
+option java_multiple_files = true;
+option java_package = "org.Muhammad.example.tv";
+option java_outer_classname = "TvProto";
+
+service Tv {
+
+   rpc TvMode(TvModeRequest) returns (TvModeResponse) {};
+   rpc TvChannel(TvChannelRequest) returns (TvChannelResponse) {};
+}
+
+message TvFunction{
+    string TvOn = 1;
+    string TvOff = 2;
+}
+
+
+message TvModeRequest {
+    TvFunction tvFunction = 1;
+}
+
+message TvModeResponse {
+   string Mode = 1;
+}
+
+
+message TvChannelRequest {
+   string Channe = 1;
+}
+
+message TvChannelResponse {
+   string Channe = 1;
+}

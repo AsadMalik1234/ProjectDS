@@ -8,21 +8,21 @@ public interface LightingOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string LightON = 1;</code>
+   * <code>string light_on = 1;</code>
    */
-  java.lang.String getLightON();
+  java.lang.String getLightOn();
   /**
-   * <code>string LightON = 1;</code>
+   * <code>string light_on = 1;</code>
    */
   com.google.protobuf.ByteString
-      getLightONBytes();
+      getLightOnBytes();
 
   /**
-   * <code>string LightOff = 2;</code>
+   * <code>string light_off = 2;</code>
    */
   java.lang.String getLightOff();
   /**
-   * <code>string LightOff = 2;</code>
+   * <code>string light_off = 2;</code>
    */
   com.google.protobuf.ByteString
       getLightOffBytes();

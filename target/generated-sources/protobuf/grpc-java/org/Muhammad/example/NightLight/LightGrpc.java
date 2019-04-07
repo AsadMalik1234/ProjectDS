@@ -27,30 +27,30 @@ public final class LightGrpc {
   public static final String SERVICE_NAME = "NightLight.Light";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightActionRequest,
-      org.Muhammad.example.NightLight.LightActionResponse> getLightOnMethod;
+  private static volatile io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightOnRequest,
+      org.Muhammad.example.NightLight.LightOnResponse> getLightOnMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "LightOn",
-      requestType = org.Muhammad.example.NightLight.LightActionRequest.class,
-      responseType = org.Muhammad.example.NightLight.LightActionResponse.class,
+      requestType = org.Muhammad.example.NightLight.LightOnRequest.class,
+      responseType = org.Muhammad.example.NightLight.LightOnResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightActionRequest,
-      org.Muhammad.example.NightLight.LightActionResponse> getLightOnMethod() {
-    io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightActionRequest, org.Muhammad.example.NightLight.LightActionResponse> getLightOnMethod;
+  public static io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightOnRequest,
+      org.Muhammad.example.NightLight.LightOnResponse> getLightOnMethod() {
+    io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightOnRequest, org.Muhammad.example.NightLight.LightOnResponse> getLightOnMethod;
     if ((getLightOnMethod = LightGrpc.getLightOnMethod) == null) {
       synchronized (LightGrpc.class) {
         if ((getLightOnMethod = LightGrpc.getLightOnMethod) == null) {
           LightGrpc.getLightOnMethod = getLightOnMethod = 
-              io.grpc.MethodDescriptor.<org.Muhammad.example.NightLight.LightActionRequest, org.Muhammad.example.NightLight.LightActionResponse>newBuilder()
+              io.grpc.MethodDescriptor.<org.Muhammad.example.NightLight.LightOnRequest, org.Muhammad.example.NightLight.LightOnResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "NightLight.Light", "LightOn"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.Muhammad.example.NightLight.LightActionRequest.getDefaultInstance()))
+                  org.Muhammad.example.NightLight.LightOnRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.Muhammad.example.NightLight.LightActionResponse.getDefaultInstance()))
+                  org.Muhammad.example.NightLight.LightOnResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new LightMethodDescriptorSupplier("LightOn"))
                   .build();
           }
@@ -59,30 +59,30 @@ public final class LightGrpc {
      return getLightOnMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightActionRequest,
-      org.Muhammad.example.NightLight.LightActionResponse> getLightOffMethod;
+  private static volatile io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightOffRequest,
+      org.Muhammad.example.NightLight.LightOffResponse> getLightOffMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "LightOff",
-      requestType = org.Muhammad.example.NightLight.LightActionRequest.class,
-      responseType = org.Muhammad.example.NightLight.LightActionResponse.class,
+      requestType = org.Muhammad.example.NightLight.LightOffRequest.class,
+      responseType = org.Muhammad.example.NightLight.LightOffResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightActionRequest,
-      org.Muhammad.example.NightLight.LightActionResponse> getLightOffMethod() {
-    io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightActionRequest, org.Muhammad.example.NightLight.LightActionResponse> getLightOffMethod;
+  public static io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightOffRequest,
+      org.Muhammad.example.NightLight.LightOffResponse> getLightOffMethod() {
+    io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.LightOffRequest, org.Muhammad.example.NightLight.LightOffResponse> getLightOffMethod;
     if ((getLightOffMethod = LightGrpc.getLightOffMethod) == null) {
       synchronized (LightGrpc.class) {
         if ((getLightOffMethod = LightGrpc.getLightOffMethod) == null) {
           LightGrpc.getLightOffMethod = getLightOffMethod = 
-              io.grpc.MethodDescriptor.<org.Muhammad.example.NightLight.LightActionRequest, org.Muhammad.example.NightLight.LightActionResponse>newBuilder()
+              io.grpc.MethodDescriptor.<org.Muhammad.example.NightLight.LightOffRequest, org.Muhammad.example.NightLight.LightOffResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "NightLight.Light", "LightOff"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.Muhammad.example.NightLight.LightActionRequest.getDefaultInstance()))
+                  org.Muhammad.example.NightLight.LightOffRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.Muhammad.example.NightLight.LightActionResponse.getDefaultInstance()))
+                  org.Muhammad.example.NightLight.LightOffResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new LightMethodDescriptorSupplier("LightOff"))
                   .build();
           }
@@ -120,15 +120,15 @@ public final class LightGrpc {
 
     /**
      */
-    public void lightOn(org.Muhammad.example.NightLight.LightActionRequest request,
-        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightActionResponse> responseObserver) {
+    public void lightOn(org.Muhammad.example.NightLight.LightOnRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightOnResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getLightOnMethod(), responseObserver);
     }
 
     /**
      */
-    public void lightOff(org.Muhammad.example.NightLight.LightActionRequest request,
-        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightActionResponse> responseObserver) {
+    public void lightOff(org.Muhammad.example.NightLight.LightOffRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightOffResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getLightOffMethod(), responseObserver);
     }
 
@@ -138,15 +138,15 @@ public final class LightGrpc {
             getLightOnMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                org.Muhammad.example.NightLight.LightActionRequest,
-                org.Muhammad.example.NightLight.LightActionResponse>(
+                org.Muhammad.example.NightLight.LightOnRequest,
+                org.Muhammad.example.NightLight.LightOnResponse>(
                   this, METHODID_LIGHT_ON)))
           .addMethod(
             getLightOffMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                org.Muhammad.example.NightLight.LightActionRequest,
-                org.Muhammad.example.NightLight.LightActionResponse>(
+                org.Muhammad.example.NightLight.LightOffRequest,
+                org.Muhammad.example.NightLight.LightOffResponse>(
                   this, METHODID_LIGHT_OFF)))
           .build();
     }
@@ -172,16 +172,16 @@ public final class LightGrpc {
 
     /**
      */
-    public void lightOn(org.Muhammad.example.NightLight.LightActionRequest request,
-        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightActionResponse> responseObserver) {
+    public void lightOn(org.Muhammad.example.NightLight.LightOnRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightOnResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getLightOnMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void lightOff(org.Muhammad.example.NightLight.LightActionRequest request,
-        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightActionResponse> responseObserver) {
+    public void lightOff(org.Muhammad.example.NightLight.LightOffRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightOffResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getLightOffMethod(), getCallOptions()), request, responseObserver);
     }
@@ -207,14 +207,14 @@ public final class LightGrpc {
 
     /**
      */
-    public org.Muhammad.example.NightLight.LightActionResponse lightOn(org.Muhammad.example.NightLight.LightActionRequest request) {
+    public org.Muhammad.example.NightLight.LightOnResponse lightOn(org.Muhammad.example.NightLight.LightOnRequest request) {
       return blockingUnaryCall(
           getChannel(), getLightOnMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public org.Muhammad.example.NightLight.LightActionResponse lightOff(org.Muhammad.example.NightLight.LightActionRequest request) {
+    public org.Muhammad.example.NightLight.LightOffResponse lightOff(org.Muhammad.example.NightLight.LightOffRequest request) {
       return blockingUnaryCall(
           getChannel(), getLightOffMethod(), getCallOptions(), request);
     }
@@ -240,16 +240,16 @@ public final class LightGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<org.Muhammad.example.NightLight.LightActionResponse> lightOn(
-        org.Muhammad.example.NightLight.LightActionRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<org.Muhammad.example.NightLight.LightOnResponse> lightOn(
+        org.Muhammad.example.NightLight.LightOnRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getLightOnMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<org.Muhammad.example.NightLight.LightActionResponse> lightOff(
-        org.Muhammad.example.NightLight.LightActionRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<org.Muhammad.example.NightLight.LightOffResponse> lightOff(
+        org.Muhammad.example.NightLight.LightOffRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getLightOffMethod(), getCallOptions()), request);
     }
@@ -276,12 +276,12 @@ public final class LightGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_LIGHT_ON:
-          serviceImpl.lightOn((org.Muhammad.example.NightLight.LightActionRequest) request,
-              (io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightActionResponse>) responseObserver);
+          serviceImpl.lightOn((org.Muhammad.example.NightLight.LightOnRequest) request,
+              (io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightOnResponse>) responseObserver);
           break;
         case METHODID_LIGHT_OFF:
-          serviceImpl.lightOff((org.Muhammad.example.NightLight.LightActionRequest) request,
-              (io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightActionResponse>) responseObserver);
+          serviceImpl.lightOff((org.Muhammad.example.NightLight.LightOffRequest) request,
+              (io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightOffResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();

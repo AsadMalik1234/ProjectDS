@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+/**
+ * This is an example of a protobuf message.
+ */
+
+package speaker;
+
+
+option java_multiple_files = true;
+option java_package = "org.Muhammad.example.speaker";
+option java_outer_classname = "SpeakerProto";
+
+service Speaker {
+
+   rpc SpeakerMode(SpeakerModeRequest) returns (SpeakerModeResponse) {};
+}
+
+message SpeakerFunction{
+    string VolumeUp = 1;
+    string VolumeDown = 2;
+    string Mute = 3;
+}
+
+
+message SpeakerModeRequest {
+    SpeakerFunction speakerFunction = 1;
+}
+
+message SpeakerModeResponse {
+   string mode = 1;
+}
+
