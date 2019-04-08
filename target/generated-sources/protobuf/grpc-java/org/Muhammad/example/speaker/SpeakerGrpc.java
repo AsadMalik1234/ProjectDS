@@ -59,6 +59,38 @@ public final class SpeakerGrpc {
      return getSpeakerModeMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.Muhammad.example.speaker.SpeakerActionRequest,
+      org.Muhammad.example.speaker.SpeakerActionResponse> getSpeakerActionMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SpeakerAction",
+      requestType = org.Muhammad.example.speaker.SpeakerActionRequest.class,
+      responseType = org.Muhammad.example.speaker.SpeakerActionResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.Muhammad.example.speaker.SpeakerActionRequest,
+      org.Muhammad.example.speaker.SpeakerActionResponse> getSpeakerActionMethod() {
+    io.grpc.MethodDescriptor<org.Muhammad.example.speaker.SpeakerActionRequest, org.Muhammad.example.speaker.SpeakerActionResponse> getSpeakerActionMethod;
+    if ((getSpeakerActionMethod = SpeakerGrpc.getSpeakerActionMethod) == null) {
+      synchronized (SpeakerGrpc.class) {
+        if ((getSpeakerActionMethod = SpeakerGrpc.getSpeakerActionMethod) == null) {
+          SpeakerGrpc.getSpeakerActionMethod = getSpeakerActionMethod = 
+              io.grpc.MethodDescriptor.<org.Muhammad.example.speaker.SpeakerActionRequest, org.Muhammad.example.speaker.SpeakerActionResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "speaker.Speaker", "SpeakerAction"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.Muhammad.example.speaker.SpeakerActionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.Muhammad.example.speaker.SpeakerActionResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new SpeakerMethodDescriptorSupplier("SpeakerAction"))
+                  .build();
+          }
+        }
+     }
+     return getSpeakerActionMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -93,6 +125,13 @@ public final class SpeakerGrpc {
       asyncUnimplementedUnaryCall(getSpeakerModeMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void speakerAction(org.Muhammad.example.speaker.SpeakerActionRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.speaker.SpeakerActionResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getSpeakerActionMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -102,6 +141,13 @@ public final class SpeakerGrpc {
                 org.Muhammad.example.speaker.SpeakerModeRequest,
                 org.Muhammad.example.speaker.SpeakerModeResponse>(
                   this, METHODID_SPEAKER_MODE)))
+          .addMethod(
+            getSpeakerActionMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.Muhammad.example.speaker.SpeakerActionRequest,
+                org.Muhammad.example.speaker.SpeakerActionResponse>(
+                  this, METHODID_SPEAKER_ACTION)))
           .build();
     }
   }
@@ -131,6 +177,14 @@ public final class SpeakerGrpc {
       asyncUnaryCall(
           getChannel().newCall(getSpeakerModeMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void speakerAction(org.Muhammad.example.speaker.SpeakerActionRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.speaker.SpeakerActionResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getSpeakerActionMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -156,6 +210,13 @@ public final class SpeakerGrpc {
     public org.Muhammad.example.speaker.SpeakerModeResponse speakerMode(org.Muhammad.example.speaker.SpeakerModeRequest request) {
       return blockingUnaryCall(
           getChannel(), getSpeakerModeMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.Muhammad.example.speaker.SpeakerActionResponse speakerAction(org.Muhammad.example.speaker.SpeakerActionRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getSpeakerActionMethod(), getCallOptions(), request);
     }
   }
 
@@ -184,9 +245,18 @@ public final class SpeakerGrpc {
       return futureUnaryCall(
           getChannel().newCall(getSpeakerModeMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.Muhammad.example.speaker.SpeakerActionResponse> speakerAction(
+        org.Muhammad.example.speaker.SpeakerActionRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getSpeakerActionMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SPEAKER_MODE = 0;
+  private static final int METHODID_SPEAKER_ACTION = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -208,6 +278,10 @@ public final class SpeakerGrpc {
         case METHODID_SPEAKER_MODE:
           serviceImpl.speakerMode((org.Muhammad.example.speaker.SpeakerModeRequest) request,
               (io.grpc.stub.StreamObserver<org.Muhammad.example.speaker.SpeakerModeResponse>) responseObserver);
+          break;
+        case METHODID_SPEAKER_ACTION:
+          serviceImpl.speakerAction((org.Muhammad.example.speaker.SpeakerActionRequest) request,
+              (io.grpc.stub.StreamObserver<org.Muhammad.example.speaker.SpeakerActionResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -271,6 +345,7 @@ public final class SpeakerGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new SpeakerFileDescriptorSupplier())
               .addMethod(getSpeakerModeMethod())
+              .addMethod(getSpeakerActionMethod())
               .build();
         }
       }

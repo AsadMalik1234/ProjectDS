@@ -67,6 +67,7 @@ public class NightLightClient implements ServiceObserver {
                 .usePlaintext(true)
                 .build();
         blockingStub = LightGrpc.newBlockingStub(channel);
+   
     }
 
     public boolean interested(String type) {

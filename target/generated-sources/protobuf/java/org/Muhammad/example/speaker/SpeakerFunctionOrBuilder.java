@@ -8,21 +8,21 @@ public interface SpeakerFunctionOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string VolumeUp = 1;</code>
+   * <code>string Volume_Up = 1;</code>
    */
   java.lang.String getVolumeUp();
   /**
-   * <code>string VolumeUp = 1;</code>
+   * <code>string Volume_Up = 1;</code>
    */
   com.google.protobuf.ByteString
       getVolumeUpBytes();
 
   /**
-   * <code>string VolumeDown = 2;</code>
+   * <code>string Volume_Down = 2;</code>
    */
   java.lang.String getVolumeDown();
   /**
-   * <code>string VolumeDown = 2;</code>
+   * <code>string Volume_Down = 2;</code>
    */
   com.google.protobuf.ByteString
       getVolumeDownBytes();
@@ -36,4 +36,24 @@ public interface SpeakerFunctionOrBuilder extends
    */
   com.google.protobuf.ByteString
       getMuteBytes();
+
+  /**
+   * <code>string Speaker_On = 4;</code>
+   */
+  java.lang.String getSpeakerOn();
+  /**
+   * <code>string Speaker_On = 4;</code>
+   */
+  com.google.protobuf.ByteString
+      getSpeakerOnBytes();
+
+  /**
+   * <code>string Speaker_Off = 5;</code>
+   */
+  java.lang.String getSpeakerOff();
+  /**
+   * <code>string Speaker_Off = 5;</code>
+   */
+  com.google.protobuf.ByteString
+      getSpeakerOffBytes();
 }

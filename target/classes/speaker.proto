@@ -14,12 +14,16 @@ option java_outer_classname = "SpeakerProto";
 service Speaker {
 
    rpc SpeakerMode(SpeakerModeRequest) returns (SpeakerModeResponse) {};
+   rpc SpeakerAction(SpeakerActionRequest) returns (SpeakerActionResponse) {};
+
 }
 
 message SpeakerFunction{
-    string VolumeUp = 1;
-    string VolumeDown = 2;
+    string Volume_Up = 1;
+    string Volume_Down = 2;
     string Mute = 3;
+    string Speaker_On = 4;
+    string Speaker_Off = 5;
 }
 
 
@@ -29,5 +33,14 @@ message SpeakerModeRequest {
 
 message SpeakerModeResponse {
    string mode = 1;
+}
+
+
+message SpeakerActionRequest {
+    SpeakerFunction speakerFunction = 1;
+}
+
+message SpeakerActionResponse {
+   string action = 1;
 }
 

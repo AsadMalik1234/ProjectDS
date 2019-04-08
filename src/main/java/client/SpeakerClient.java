@@ -11,7 +11,12 @@ import io.grpc.ManagedChannelBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.Muhammad.example.speaker.SpeakerActionRequest;
+import org.Muhammad.example.speaker.SpeakerActionResponse;
+import org.Muhammad.example.speaker.SpeakerFunction;
 import org.Muhammad.example.speaker.SpeakerGrpc;
+import org.Muhammad.example.speaker.SpeakerModeRequest;
+import org.Muhammad.example.speaker.SpeakerModeResponse;
 
 /**
  *
@@ -74,16 +79,63 @@ public class SpeakerClient implements ServiceObserver {
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
-    
-    
-    
-    public void speakerMode(){
-        
+
+    public void speakerMode(String buttonName) {
+
+        SpeakerFunction speakerFunction = null;
+
+        if ("VolumeUp".equalsIgnoreCase(buttonName)) {
+            speakerFunction = SpeakerFunction.newBuilder().setVolumeUp("Turn volume up")
+                    .build();
+
+        } else if ("VolumeDown".equalsIgnoreCase(buttonName)) {
+            speakerFunction = SpeakerFunction.newBuilder().setVolumeDown("Turn volume down")
+                    .build();
+
+        } else if ("Mute".equalsIgnoreCase(buttonName)) {
+            speakerFunction = SpeakerFunction.newBuilder().setMute("Please mute")
+                    .build();
+        }
+
+        SpeakerModeRequest speakerModeRequest = SpeakerModeRequest.newBuilder().setSpeakerFunction(speakerFunction)
+                .build();
+
+        SpeakerModeResponse SpeakerModeResponse = blockingStub.speakerMode(speakerModeRequest);
+
+        System.out.println(SpeakerModeResponse.getMode());
+        ui.append(SpeakerModeResponse.getMode());
+
     }
-    
+
+    //Method for turning speaker on/off
+    public void speakerAction(String buttonName) {
+
+        SpeakerFunction speakerFunction = null;
+
+        if ("SpeakerOn".equalsIgnoreCase(buttonName)) {
+            speakerFunction = SpeakerFunction.newBuilder().setSpeakerOn("Please turn the speaker on")
+                    .build();
+        } else if ("SpeakerOff".equalsIgnoreCase(buttonName)) {
+            speakerFunction = SpeakerFunction.newBuilder().setSpeakerOff("Please turn the speaker off")
+                    .build();
+        }
+
+        SpeakerActionRequest speakerActionRequest = SpeakerActionRequest.newBuilder().setSpeakerFunction(speakerFunction)
+                .build();
+
+        SpeakerActionResponse SpeakerActionResponse = blockingStub.speakerAction(speakerActionRequest);
+
+        System.out.println(SpeakerActionResponse.getAction());
+        ui.append(SpeakerActionResponse.getAction());
+
+    }
 
     public void switchService(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void main(String[] args) {
+        new SpeakerClient();
     }
 
 }

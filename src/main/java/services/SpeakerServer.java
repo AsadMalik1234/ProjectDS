@@ -7,8 +7,14 @@ package services;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import io.grpc.stub.StreamObserver;
 import java.util.logging.Logger;
+import org.Muhammad.example.speaker.SpeakerActionRequest;
+import org.Muhammad.example.speaker.SpeakerActionResponse;
+import org.Muhammad.example.speaker.SpeakerFunction;
 import org.Muhammad.example.speaker.SpeakerGrpc;
+import org.Muhammad.example.speaker.SpeakerModeRequest;
+import org.Muhammad.example.speaker.SpeakerModeResponse;
 import serviceui.Printer;
 import serviceui.ServiceUI;
 
@@ -21,8 +27,11 @@ public class SpeakerServer {
     private static final Logger logger = Logger.getLogger(SpeakerServer.class.getName());
 
     /* The port on which the server should run */
-    private int port = 50055;
+    private int port = 50056;
     private Server server;
+    private int speakerStatus = 0; // 0 is OFF; 1 is ON
+    private int speakerVolume = 0;
+    private boolean speakerMute = false;
 
     private void start() throws Exception {
         server = ServerBuilder.forPort(port)
@@ -70,10 +79,95 @@ public class SpeakerServer {
             ui = new ServiceUI(name + serviceType);
         }
 
-        public void speakerMode(org.Muhammad.example.speaker.SpeakerModeRequest request,
-                io.grpc.stub.StreamObserver<org.Muhammad.example.speaker.SpeakerModeResponse> responseObserver) {
+        public void speakerMode(SpeakerModeRequest request, StreamObserver<SpeakerModeResponse> responseObserver) {
+
+            SpeakerFunction speakerFunction = request.getSpeakerFunction();
+            String speakerModeRequested;
+            String speakerModePerformed = null;
+
+            if (speakerStatus == 0) {
+                speakerModePerformed = "Please turn on the speaker";
+            } else if (speakerFunction.getVolumeUp() != null && !speakerFunction.getVolumeUp().equalsIgnoreCase("")) {
+                speakerModeRequested = speakerFunction.getVolumeUp();
+                ui.append(speakerModeRequested);
+                if (speakerVolume < 100) {
+                    speakerMute = false;
+                    speakerVolume = speakerVolume + 10;
+                    speakerModePerformed = "Volume is now : " + speakerVolume;
+                } else if (speakerVolume >= 100) {
+                    speakerModePerformed = "Volume already at maximum";
+                }
+            } else if (speakerFunction.getVolumeDown() != null && !speakerFunction.getVolumeDown().equalsIgnoreCase("")) {
+                speakerModeRequested = speakerFunction.getVolumeDown();
+                ui.append(speakerModeRequested);
+
+                if (speakerVolume > 0) {
+                    speakerMute = false;
+                    speakerVolume = speakerVolume - 10;
+                    speakerModePerformed = "Volume is now : " + speakerVolume;
+                } else if (speakerVolume <= 0) {
+                    speakerModePerformed = "Volume already at minimum";
+                }
+            } else if (speakerFunction.getMute() != null && !speakerFunction.getMute().equalsIgnoreCase("")) {
+                speakerModeRequested = speakerFunction.getMute();
+                ui.append(speakerModeRequested);
+                if (speakerMute) {
+                    speakerMute = false;
+                    speakerModePerformed = "Speaker unmuted";
+                } else {
+                    speakerMute = true;
+                    speakerModePerformed = "Speaker Muted";
+                }
+            }
+
+            SpeakerModeResponse response = SpeakerModeResponse.newBuilder().setMode(speakerModePerformed)
+                    .build();
+
+            responseObserver.onNext(response);
+            // complete the RPC call
+            responseObserver.onCompleted();
 
         }
+
+        public void speakerAction(SpeakerActionRequest request, StreamObserver<SpeakerActionResponse> responseObserver) {
+
+            SpeakerFunction speakerFunction = request.getSpeakerFunction();
+            String speakerActionRequested;
+            String speakerActionPerformed = null;
+
+            // turning speaker on
+            if (speakerFunction.getSpeakerOn() != null && !speakerFunction.getSpeakerOn().equalsIgnoreCase("")) {
+                speakerActionRequested = speakerFunction.getSpeakerOn();
+                ui.append(speakerActionRequested);
+
+                if (speakerStatus == 0) {
+                    speakerActionPerformed = "Speaker turned on";
+                    speakerStatus = 1;
+                } else if (speakerStatus == 1) {
+                    speakerActionPerformed = "Speaker already turned on";
+                }
+
+            } else if (speakerFunction.getSpeakerOff() != null && !speakerFunction.getSpeakerOff().equalsIgnoreCase("")) { // turning speaker off
+                speakerActionRequested = speakerFunction.getSpeakerOff();
+                ui.append(speakerActionRequested);
+
+                if (speakerStatus == 1) {
+                    speakerActionPerformed = "Speaker turned off";
+                    speakerStatus = 0;
+                } else if (speakerStatus == 0) {
+                    speakerActionPerformed = "Speaker already off";
+                }
+
+            }
+            SpeakerActionResponse response = SpeakerActionResponse.newBuilder().setAction(speakerActionPerformed)
+                    .build();
+
+            responseObserver.onNext(response);
+            // complete the RPC call
+            responseObserver.onCompleted();
+
+        }
+
     }
 
 }

@@ -19,6 +19,8 @@ private static final long serialVersionUID = 0L;
     volumeUp_ = "";
     volumeDown_ = "";
     mute_ = "";
+    speakerOn_ = "";
+    speakerOff_ = "";
   }
 
   @java.lang.Override
@@ -63,6 +65,18 @@ private static final long serialVersionUID = 0L;
             mute_ = s;
             break;
           }
+          case 34: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            speakerOn_ = s;
+            break;
+          }
+          case 42: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            speakerOff_ = s;
+            break;
+          }
           default: {
             if (!parseUnknownFieldProto3(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -95,10 +109,10 @@ private static final long serialVersionUID = 0L;
             org.Muhammad.example.speaker.SpeakerFunction.class, org.Muhammad.example.speaker.SpeakerFunction.Builder.class);
   }
 
-  public static final int VOLUMEUP_FIELD_NUMBER = 1;
+  public static final int VOLUME_UP_FIELD_NUMBER = 1;
   private volatile java.lang.Object volumeUp_;
   /**
-   * <code>string VolumeUp = 1;</code>
+   * <code>string Volume_Up = 1;</code>
    */
   public java.lang.String getVolumeUp() {
     java.lang.Object ref = volumeUp_;
@@ -113,7 +127,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string VolumeUp = 1;</code>
+   * <code>string Volume_Up = 1;</code>
    */
   public com.google.protobuf.ByteString
       getVolumeUpBytes() {
@@ -129,10 +143,10 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int VOLUMEDOWN_FIELD_NUMBER = 2;
+  public static final int VOLUME_DOWN_FIELD_NUMBER = 2;
   private volatile java.lang.Object volumeDown_;
   /**
-   * <code>string VolumeDown = 2;</code>
+   * <code>string Volume_Down = 2;</code>
    */
   public java.lang.String getVolumeDown() {
     java.lang.Object ref = volumeDown_;
@@ -147,7 +161,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string VolumeDown = 2;</code>
+   * <code>string Volume_Down = 2;</code>
    */
   public com.google.protobuf.ByteString
       getVolumeDownBytes() {
@@ -197,6 +211,74 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int SPEAKER_ON_FIELD_NUMBER = 4;
+  private volatile java.lang.Object speakerOn_;
+  /**
+   * <code>string Speaker_On = 4;</code>
+   */
+  public java.lang.String getSpeakerOn() {
+    java.lang.Object ref = speakerOn_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      speakerOn_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string Speaker_On = 4;</code>
+   */
+  public com.google.protobuf.ByteString
+      getSpeakerOnBytes() {
+    java.lang.Object ref = speakerOn_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      speakerOn_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int SPEAKER_OFF_FIELD_NUMBER = 5;
+  private volatile java.lang.Object speakerOff_;
+  /**
+   * <code>string Speaker_Off = 5;</code>
+   */
+  public java.lang.String getSpeakerOff() {
+    java.lang.Object ref = speakerOff_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      speakerOff_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string Speaker_Off = 5;</code>
+   */
+  public com.google.protobuf.ByteString
+      getSpeakerOffBytes() {
+    java.lang.Object ref = speakerOff_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      speakerOff_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -220,6 +302,12 @@ private static final long serialVersionUID = 0L;
     if (!getMuteBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, mute_);
     }
+    if (!getSpeakerOnBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, speakerOn_);
+    }
+    if (!getSpeakerOffBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, speakerOff_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -237,6 +325,12 @@ private static final long serialVersionUID = 0L;
     }
     if (!getMuteBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, mute_);
+    }
+    if (!getSpeakerOnBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, speakerOn_);
+    }
+    if (!getSpeakerOffBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, speakerOff_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -260,6 +354,10 @@ private static final long serialVersionUID = 0L;
         .equals(other.getVolumeDown());
     result = result && getMute()
         .equals(other.getMute());
+    result = result && getSpeakerOn()
+        .equals(other.getSpeakerOn());
+    result = result && getSpeakerOff()
+        .equals(other.getSpeakerOff());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -271,12 +369,16 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + VOLUMEUP_FIELD_NUMBER;
+    hash = (37 * hash) + VOLUME_UP_FIELD_NUMBER;
     hash = (53 * hash) + getVolumeUp().hashCode();
-    hash = (37 * hash) + VOLUMEDOWN_FIELD_NUMBER;
+    hash = (37 * hash) + VOLUME_DOWN_FIELD_NUMBER;
     hash = (53 * hash) + getVolumeDown().hashCode();
     hash = (37 * hash) + MUTE_FIELD_NUMBER;
     hash = (53 * hash) + getMute().hashCode();
+    hash = (37 * hash) + SPEAKER_ON_FIELD_NUMBER;
+    hash = (53 * hash) + getSpeakerOn().hashCode();
+    hash = (37 * hash) + SPEAKER_OFF_FIELD_NUMBER;
+    hash = (53 * hash) + getSpeakerOff().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -416,6 +518,10 @@ private static final long serialVersionUID = 0L;
 
       mute_ = "";
 
+      speakerOn_ = "";
+
+      speakerOff_ = "";
+
       return this;
     }
 
@@ -445,6 +551,8 @@ private static final long serialVersionUID = 0L;
       result.volumeUp_ = volumeUp_;
       result.volumeDown_ = volumeDown_;
       result.mute_ = mute_;
+      result.speakerOn_ = speakerOn_;
+      result.speakerOff_ = speakerOff_;
       onBuilt();
       return result;
     }
@@ -505,6 +613,14 @@ private static final long serialVersionUID = 0L;
         mute_ = other.mute_;
         onChanged();
       }
+      if (!other.getSpeakerOn().isEmpty()) {
+        speakerOn_ = other.speakerOn_;
+        onChanged();
+      }
+      if (!other.getSpeakerOff().isEmpty()) {
+        speakerOff_ = other.speakerOff_;
+        onChanged();
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -536,7 +652,7 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object volumeUp_ = "";
     /**
-     * <code>string VolumeUp = 1;</code>
+     * <code>string Volume_Up = 1;</code>
      */
     public java.lang.String getVolumeUp() {
       java.lang.Object ref = volumeUp_;
@@ -551,7 +667,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string VolumeUp = 1;</code>
+     * <code>string Volume_Up = 1;</code>
      */
     public com.google.protobuf.ByteString
         getVolumeUpBytes() {
@@ -567,7 +683,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string VolumeUp = 1;</code>
+     * <code>string Volume_Up = 1;</code>
      */
     public Builder setVolumeUp(
         java.lang.String value) {
@@ -580,7 +696,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string VolumeUp = 1;</code>
+     * <code>string Volume_Up = 1;</code>
      */
     public Builder clearVolumeUp() {
       
@@ -589,7 +705,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string VolumeUp = 1;</code>
+     * <code>string Volume_Up = 1;</code>
      */
     public Builder setVolumeUpBytes(
         com.google.protobuf.ByteString value) {
@@ -605,7 +721,7 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object volumeDown_ = "";
     /**
-     * <code>string VolumeDown = 2;</code>
+     * <code>string Volume_Down = 2;</code>
      */
     public java.lang.String getVolumeDown() {
       java.lang.Object ref = volumeDown_;
@@ -620,7 +736,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string VolumeDown = 2;</code>
+     * <code>string Volume_Down = 2;</code>
      */
     public com.google.protobuf.ByteString
         getVolumeDownBytes() {
@@ -636,7 +752,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string VolumeDown = 2;</code>
+     * <code>string Volume_Down = 2;</code>
      */
     public Builder setVolumeDown(
         java.lang.String value) {
@@ -649,7 +765,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string VolumeDown = 2;</code>
+     * <code>string Volume_Down = 2;</code>
      */
     public Builder clearVolumeDown() {
       
@@ -658,7 +774,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string VolumeDown = 2;</code>
+     * <code>string Volume_Down = 2;</code>
      */
     public Builder setVolumeDownBytes(
         com.google.protobuf.ByteString value) {
@@ -737,6 +853,144 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       mute_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object speakerOn_ = "";
+    /**
+     * <code>string Speaker_On = 4;</code>
+     */
+    public java.lang.String getSpeakerOn() {
+      java.lang.Object ref = speakerOn_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        speakerOn_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string Speaker_On = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpeakerOnBytes() {
+      java.lang.Object ref = speakerOn_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        speakerOn_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string Speaker_On = 4;</code>
+     */
+    public Builder setSpeakerOn(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      speakerOn_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string Speaker_On = 4;</code>
+     */
+    public Builder clearSpeakerOn() {
+      
+      speakerOn_ = getDefaultInstance().getSpeakerOn();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string Speaker_On = 4;</code>
+     */
+    public Builder setSpeakerOnBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      speakerOn_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object speakerOff_ = "";
+    /**
+     * <code>string Speaker_Off = 5;</code>
+     */
+    public java.lang.String getSpeakerOff() {
+      java.lang.Object ref = speakerOff_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        speakerOff_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string Speaker_Off = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSpeakerOffBytes() {
+      java.lang.Object ref = speakerOff_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        speakerOff_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string Speaker_Off = 5;</code>
+     */
+    public Builder setSpeakerOff(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      speakerOff_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string Speaker_Off = 5;</code>
+     */
+    public Builder clearSpeakerOff() {
+      
+      speakerOff_ = getDefaultInstance().getSpeakerOff();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string Speaker_Off = 5;</code>
+     */
+    public Builder setSpeakerOffBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      speakerOff_ = value;
       onChanged();
       return this;
     }
