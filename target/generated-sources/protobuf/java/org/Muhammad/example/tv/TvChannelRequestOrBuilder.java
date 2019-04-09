@@ -8,12 +8,15 @@ public interface TvChannelRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string Channe = 1;</code>
+   * <code>.TvFunction tvFunction = 1;</code>
    */
-  java.lang.String getChanne();
+  boolean hasTvFunction();
   /**
-   * <code>string Channe = 1;</code>
+   * <code>.TvFunction tvFunction = 1;</code>
    */
-  com.google.protobuf.ByteString
-      getChanneBytes();
+  org.Muhammad.example.tv.TvFunction getTvFunction();
+  /**
+   * <code>.TvFunction tvFunction = 1;</code>
+   */
+  org.Muhammad.example.tv.TvFunctionOrBuilder getTvFunctionOrBuilder();
 }

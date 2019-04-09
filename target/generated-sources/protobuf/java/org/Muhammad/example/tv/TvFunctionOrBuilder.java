@@ -26,4 +26,14 @@ public interface TvFunctionOrBuilder extends
    */
   com.google.protobuf.ByteString
       getTvOffBytes();
+
+  /**
+   * <code>string Channel = 3;</code>
+   */
+  java.lang.String getChannel();
+  /**
+   * <code>string Channel = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getChannelBytes();
 }

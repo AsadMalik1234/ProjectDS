@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TvChannelRequest() {
-    channe_ = "";
   }
 
   @java.lang.Override
@@ -44,9 +43,16 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+            org.Muhammad.example.tv.TvFunction.Builder subBuilder = null;
+            if (tvFunction_ != null) {
+              subBuilder = tvFunction_.toBuilder();
+            }
+            tvFunction_ = input.readMessage(org.Muhammad.example.tv.TvFunction.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(tvFunction_);
+              tvFunction_ = subBuilder.buildPartial();
+            }
 
-            channe_ = s;
             break;
           }
           default: {
@@ -81,38 +87,25 @@ private static final long serialVersionUID = 0L;
             org.Muhammad.example.tv.TvChannelRequest.class, org.Muhammad.example.tv.TvChannelRequest.Builder.class);
   }
 
-  public static final int CHANNE_FIELD_NUMBER = 1;
-  private volatile java.lang.Object channe_;
+  public static final int TVFUNCTION_FIELD_NUMBER = 1;
+  private org.Muhammad.example.tv.TvFunction tvFunction_;
   /**
-   * <code>string Channe = 1;</code>
+   * <code>.TvFunction tvFunction = 1;</code>
    */
-  public java.lang.String getChanne() {
-    java.lang.Object ref = channe_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      channe_ = s;
-      return s;
-    }
+  public boolean hasTvFunction() {
+    return tvFunction_ != null;
   }
   /**
-   * <code>string Channe = 1;</code>
+   * <code>.TvFunction tvFunction = 1;</code>
    */
-  public com.google.protobuf.ByteString
-      getChanneBytes() {
-    java.lang.Object ref = channe_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      channe_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public org.Muhammad.example.tv.TvFunction getTvFunction() {
+    return tvFunction_ == null ? org.Muhammad.example.tv.TvFunction.getDefaultInstance() : tvFunction_;
+  }
+  /**
+   * <code>.TvFunction tvFunction = 1;</code>
+   */
+  public org.Muhammad.example.tv.TvFunctionOrBuilder getTvFunctionOrBuilder() {
+    return getTvFunction();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -129,8 +122,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getChanneBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, channe_);
+    if (tvFunction_ != null) {
+      output.writeMessage(1, getTvFunction());
     }
     unknownFields.writeTo(output);
   }
@@ -141,8 +134,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getChanneBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, channe_);
+    if (tvFunction_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, getTvFunction());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -160,8 +154,11 @@ private static final long serialVersionUID = 0L;
     org.Muhammad.example.tv.TvChannelRequest other = (org.Muhammad.example.tv.TvChannelRequest) obj;
 
     boolean result = true;
-    result = result && getChanne()
-        .equals(other.getChanne());
+    result = result && (hasTvFunction() == other.hasTvFunction());
+    if (hasTvFunction()) {
+      result = result && getTvFunction()
+          .equals(other.getTvFunction());
+    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -173,8 +170,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + CHANNE_FIELD_NUMBER;
-    hash = (53 * hash) + getChanne().hashCode();
+    if (hasTvFunction()) {
+      hash = (37 * hash) + TVFUNCTION_FIELD_NUMBER;
+      hash = (53 * hash) + getTvFunction().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -308,8 +307,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      channe_ = "";
-
+      if (tvFunctionBuilder_ == null) {
+        tvFunction_ = null;
+      } else {
+        tvFunction_ = null;
+        tvFunctionBuilder_ = null;
+      }
       return this;
     }
 
@@ -336,7 +339,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public org.Muhammad.example.tv.TvChannelRequest buildPartial() {
       org.Muhammad.example.tv.TvChannelRequest result = new org.Muhammad.example.tv.TvChannelRequest(this);
-      result.channe_ = channe_;
+      if (tvFunctionBuilder_ == null) {
+        result.tvFunction_ = tvFunction_;
+      } else {
+        result.tvFunction_ = tvFunctionBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -385,9 +392,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(org.Muhammad.example.tv.TvChannelRequest other) {
       if (other == org.Muhammad.example.tv.TvChannelRequest.getDefaultInstance()) return this;
-      if (!other.getChanne().isEmpty()) {
-        channe_ = other.channe_;
-        onChanged();
+      if (other.hasTvFunction()) {
+        mergeTvFunction(other.getTvFunction());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -418,73 +424,121 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object channe_ = "";
+    private org.Muhammad.example.tv.TvFunction tvFunction_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.Muhammad.example.tv.TvFunction, org.Muhammad.example.tv.TvFunction.Builder, org.Muhammad.example.tv.TvFunctionOrBuilder> tvFunctionBuilder_;
     /**
-     * <code>string Channe = 1;</code>
+     * <code>.TvFunction tvFunction = 1;</code>
      */
-    public java.lang.String getChanne() {
-      java.lang.Object ref = channe_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        channe_ = s;
-        return s;
+    public boolean hasTvFunction() {
+      return tvFunctionBuilder_ != null || tvFunction_ != null;
+    }
+    /**
+     * <code>.TvFunction tvFunction = 1;</code>
+     */
+    public org.Muhammad.example.tv.TvFunction getTvFunction() {
+      if (tvFunctionBuilder_ == null) {
+        return tvFunction_ == null ? org.Muhammad.example.tv.TvFunction.getDefaultInstance() : tvFunction_;
       } else {
-        return (java.lang.String) ref;
+        return tvFunctionBuilder_.getMessage();
       }
     }
     /**
-     * <code>string Channe = 1;</code>
+     * <code>.TvFunction tvFunction = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getChanneBytes() {
-      java.lang.Object ref = channe_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        channe_ = b;
-        return b;
+    public Builder setTvFunction(org.Muhammad.example.tv.TvFunction value) {
+      if (tvFunctionBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        tvFunction_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        tvFunctionBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.TvFunction tvFunction = 1;</code>
+     */
+    public Builder setTvFunction(
+        org.Muhammad.example.tv.TvFunction.Builder builderForValue) {
+      if (tvFunctionBuilder_ == null) {
+        tvFunction_ = builderForValue.build();
+        onChanged();
+      } else {
+        tvFunctionBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.TvFunction tvFunction = 1;</code>
+     */
+    public Builder mergeTvFunction(org.Muhammad.example.tv.TvFunction value) {
+      if (tvFunctionBuilder_ == null) {
+        if (tvFunction_ != null) {
+          tvFunction_ =
+            org.Muhammad.example.tv.TvFunction.newBuilder(tvFunction_).mergeFrom(value).buildPartial();
+        } else {
+          tvFunction_ = value;
+        }
+        onChanged();
+      } else {
+        tvFunctionBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.TvFunction tvFunction = 1;</code>
+     */
+    public Builder clearTvFunction() {
+      if (tvFunctionBuilder_ == null) {
+        tvFunction_ = null;
+        onChanged();
+      } else {
+        tvFunction_ = null;
+        tvFunctionBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.TvFunction tvFunction = 1;</code>
+     */
+    public org.Muhammad.example.tv.TvFunction.Builder getTvFunctionBuilder() {
+      
+      onChanged();
+      return getTvFunctionFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.TvFunction tvFunction = 1;</code>
+     */
+    public org.Muhammad.example.tv.TvFunctionOrBuilder getTvFunctionOrBuilder() {
+      if (tvFunctionBuilder_ != null) {
+        return tvFunctionBuilder_.getMessageOrBuilder();
+      } else {
+        return tvFunction_ == null ?
+            org.Muhammad.example.tv.TvFunction.getDefaultInstance() : tvFunction_;
       }
     }
     /**
-     * <code>string Channe = 1;</code>
+     * <code>.TvFunction tvFunction = 1;</code>
      */
-    public Builder setChanne(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      channe_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string Channe = 1;</code>
-     */
-    public Builder clearChanne() {
-      
-      channe_ = getDefaultInstance().getChanne();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string Channe = 1;</code>
-     */
-    public Builder setChanneBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      channe_ = value;
-      onChanged();
-      return this;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.Muhammad.example.tv.TvFunction, org.Muhammad.example.tv.TvFunction.Builder, org.Muhammad.example.tv.TvFunctionOrBuilder> 
+        getTvFunctionFieldBuilder() {
+      if (tvFunctionBuilder_ == null) {
+        tvFunctionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.Muhammad.example.tv.TvFunction, org.Muhammad.example.tv.TvFunction.Builder, org.Muhammad.example.tv.TvFunctionOrBuilder>(
+                getTvFunction(),
+                getParentForChildren(),
+                isClean());
+        tvFunction_ = null;
+      }
+      return tvFunctionBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

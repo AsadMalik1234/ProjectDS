@@ -8,12 +8,12 @@ public interface TvChannelResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string Channe = 1;</code>
+   * <code>string Channel = 1;</code>
    */
-  java.lang.String getChanne();
+  java.lang.String getChannel();
   /**
-   * <code>string Channe = 1;</code>
+   * <code>string Channel = 1;</code>
    */
   com.google.protobuf.ByteString
-      getChanneBytes();
+      getChannelBytes();
 }

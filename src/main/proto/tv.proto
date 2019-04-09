@@ -17,6 +17,7 @@ service Tv {
 message TvFunction{
     string TvOn = 1;
     string TvOff = 2;
+    string Channel = 3;
 }
 
 
@@ -30,9 +31,9 @@ message TvModeResponse {
 
 
 message TvChannelRequest {
-   string Channe = 1;
+ TvFunction tvFunction = 1;
 }
 
 message TvChannelResponse {
-   string Channe = 1;
+   string Channel = 1;
 }

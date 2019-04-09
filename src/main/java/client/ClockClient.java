@@ -19,18 +19,18 @@ import org.Muhammad.example.clock.ClockGrpc;
  *
  * @author asadmalik
  */
-public class ClockClient implements ServiceObserver{
-    
-        protected ClockClientGUI ui;
+public class ClockClient implements ServiceObserver {
+
+    protected ClockClientGUI ui;
     private final String serviceType;
     private final String name;
-        private ManagedChannel channel;
+    private ManagedChannel channel;
     protected ServiceDescription current;
     private ClockGrpc.ClockBlockingStub blockingStub;
-    
-    public ClockClient(){
-        
-                serviceType = "_Clock._udp.local.";
+
+    public ClockClient() {
+
+        serviceType = "_Clock._udp.local.";
         name = "Clock";
         jmDNSServiceTracker clientManager = jmDNSServiceTracker.getInstance();
         clientManager.register(this);
@@ -40,59 +40,57 @@ public class ClockClient implements ServiceObserver{
                 ui.setVisible(true);
             }
         });
-        
+
     }
-        String getServiceType() {
+
+    String getServiceType() {
         return serviceType;
     }
-         void disable() {
+
+    void disable() {
         // no services exist for this client type
     }
 
-
-   
-
     public List<String> serviceInterests() {
-           List<String> interests = new ArrayList<String>();
+        List<String> interests = new ArrayList<String>();
         interests.add(serviceType);
         return interests;
     }
 
     public void serviceAdded(ServiceDescription service) {
-         System.out.println("service added");
+        System.out.println("service added");
         current = service;
         channel = ManagedChannelBuilder.forAddress(service.getAddress(), service.getPort())
                 .usePlaintext(true)
                 .build();
         blockingStub = ClockGrpc.newBlockingStub(channel);
-   
+
     }
-     public boolean interested(String type) {
-           return serviceType.equals(type);
+
+    public boolean interested(String type) {
+        return serviceType.equals(type);
     }
 
     public String getName() {
-       return name;
+        return name;
     }
-    
-    
-        public void clockAction(String buttonName){
-           ClockFunction clockFunction = ClockFunction.newBuilder()
-                   .build();
-           
-           ClockActionRequest clockActionRequest = ClockActionRequest.newBuilder()
-                   .build();
-           
-           ClockActionResponse clockActionResponse = blockingStub.clockAction(clockActionRequest);
-        }
-    
+
+    public void clockAction(String buttonName) {
+        ClockFunction clockFunction = ClockFunction.newBuilder()
+                .build();
+
+        ClockActionRequest clockActionRequest = ClockActionRequest.newBuilder()
+                .build();
+
+        ClockActionResponse clockActionResponse = blockingStub.clockAction(clockActionRequest);
+    }
 
     public void switchService(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-      public static void main(String[] args) {
+
+    public static void main(String[] args) {
         new ClockClient();
     }
-    
+
 }

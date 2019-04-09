@@ -48,15 +48,16 @@ public final class TvProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\010tv.proto\")\n\nTvFunction\022\014\n\004TvOn\030\001 \001(\t\022\r" +
-      "\n\005TvOff\030\002 \001(\t\"0\n\rTvModeRequest\022\037\n\ntvFunc" +
-      "tion\030\001 \001(\0132\013.TvFunction\"\036\n\016TvModeRespons" +
-      "e\022\014\n\004Mode\030\001 \001(\t\"\"\n\020TvChannelRequest\022\016\n\006C" +
-      "hanne\030\001 \001(\t\"#\n\021TvChannelResponse\022\016\n\006Chan" +
-      "ne\030\001 \001(\t2g\n\002Tv\022+\n\006TvMode\022\016.TvModeRequest" +
-      "\032\017.TvModeResponse\"\000\0224\n\tTvChannel\022\021.TvCha" +
-      "nnelRequest\032\022.TvChannelResponse\"\000B$\n\027org" +
-      ".Muhammad.example.tvB\007TvProtoP\001b\006proto3"
+      "\n\010tv.proto\":\n\nTvFunction\022\014\n\004TvOn\030\001 \001(\t\022\r" +
+      "\n\005TvOff\030\002 \001(\t\022\017\n\007Channel\030\003 \001(\t\"0\n\rTvMode" +
+      "Request\022\037\n\ntvFunction\030\001 \001(\0132\013.TvFunction" +
+      "\"\036\n\016TvModeResponse\022\014\n\004Mode\030\001 \001(\t\"3\n\020TvCh" +
+      "annelRequest\022\037\n\ntvFunction\030\001 \001(\0132\013.TvFun" +
+      "ction\"$\n\021TvChannelResponse\022\017\n\007Channel\030\001 " +
+      "\001(\t2g\n\002Tv\022+\n\006TvMode\022\016.TvModeRequest\032\017.Tv" +
+      "ModeResponse\"\000\0224\n\tTvChannel\022\021.TvChannelR" +
+      "equest\032\022.TvChannelResponse\"\000B$\n\027org.Muha" +
+      "mmad.example.tvB\007TvProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -75,7 +76,7 @@ public final class TvProto {
     internal_static_TvFunction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TvFunction_descriptor,
-        new java.lang.String[] { "TvOn", "TvOff", });
+        new java.lang.String[] { "TvOn", "TvOff", "Channel", });
     internal_static_TvModeRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_TvModeRequest_fieldAccessorTable = new
@@ -93,13 +94,13 @@ public final class TvProto {
     internal_static_TvChannelRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TvChannelRequest_descriptor,
-        new java.lang.String[] { "Channe", });
+        new java.lang.String[] { "TvFunction", });
     internal_static_TvChannelResponse_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_TvChannelResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TvChannelResponse_descriptor,
-        new java.lang.String[] { "Channe", });
+        new java.lang.String[] { "Channel", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

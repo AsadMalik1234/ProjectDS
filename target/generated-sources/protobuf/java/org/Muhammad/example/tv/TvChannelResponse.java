@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private TvChannelResponse() {
-    channe_ = "";
+    channel_ = "";
   }
 
   @java.lang.Override
@@ -46,7 +46,7 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            channe_ = s;
+            channel_ = s;
             break;
           }
           default: {
@@ -81,34 +81,34 @@ private static final long serialVersionUID = 0L;
             org.Muhammad.example.tv.TvChannelResponse.class, org.Muhammad.example.tv.TvChannelResponse.Builder.class);
   }
 
-  public static final int CHANNE_FIELD_NUMBER = 1;
-  private volatile java.lang.Object channe_;
+  public static final int CHANNEL_FIELD_NUMBER = 1;
+  private volatile java.lang.Object channel_;
   /**
-   * <code>string Channe = 1;</code>
+   * <code>string Channel = 1;</code>
    */
-  public java.lang.String getChanne() {
-    java.lang.Object ref = channe_;
+  public java.lang.String getChannel() {
+    java.lang.Object ref = channel_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      channe_ = s;
+      channel_ = s;
       return s;
     }
   }
   /**
-   * <code>string Channe = 1;</code>
+   * <code>string Channel = 1;</code>
    */
   public com.google.protobuf.ByteString
-      getChanneBytes() {
-    java.lang.Object ref = channe_;
+      getChannelBytes() {
+    java.lang.Object ref = channel_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      channe_ = b;
+      channel_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -129,8 +129,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getChanneBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, channe_);
+    if (!getChannelBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, channel_);
     }
     unknownFields.writeTo(output);
   }
@@ -141,8 +141,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getChanneBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, channe_);
+    if (!getChannelBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, channel_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -160,8 +160,8 @@ private static final long serialVersionUID = 0L;
     org.Muhammad.example.tv.TvChannelResponse other = (org.Muhammad.example.tv.TvChannelResponse) obj;
 
     boolean result = true;
-    result = result && getChanne()
-        .equals(other.getChanne());
+    result = result && getChannel()
+        .equals(other.getChannel());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -173,8 +173,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + CHANNE_FIELD_NUMBER;
-    hash = (53 * hash) + getChanne().hashCode();
+    hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
+    hash = (53 * hash) + getChannel().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -308,7 +308,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      channe_ = "";
+      channel_ = "";
 
       return this;
     }
@@ -336,7 +336,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public org.Muhammad.example.tv.TvChannelResponse buildPartial() {
       org.Muhammad.example.tv.TvChannelResponse result = new org.Muhammad.example.tv.TvChannelResponse(this);
-      result.channe_ = channe_;
+      result.channel_ = channel_;
       onBuilt();
       return result;
     }
@@ -385,8 +385,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(org.Muhammad.example.tv.TvChannelResponse other) {
       if (other == org.Muhammad.example.tv.TvChannelResponse.getDefaultInstance()) return this;
-      if (!other.getChanne().isEmpty()) {
-        channe_ = other.channe_;
+      if (!other.getChannel().isEmpty()) {
+        channel_ = other.channel_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -418,71 +418,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object channe_ = "";
+    private java.lang.Object channel_ = "";
     /**
-     * <code>string Channe = 1;</code>
+     * <code>string Channel = 1;</code>
      */
-    public java.lang.String getChanne() {
-      java.lang.Object ref = channe_;
+    public java.lang.String getChannel() {
+      java.lang.Object ref = channel_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        channe_ = s;
+        channel_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string Channe = 1;</code>
+     * <code>string Channel = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getChanneBytes() {
-      java.lang.Object ref = channe_;
+        getChannelBytes() {
+      java.lang.Object ref = channel_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        channe_ = b;
+        channel_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string Channe = 1;</code>
+     * <code>string Channel = 1;</code>
      */
-    public Builder setChanne(
+    public Builder setChannel(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      channe_ = value;
+      channel_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string Channe = 1;</code>
+     * <code>string Channel = 1;</code>
      */
-    public Builder clearChanne() {
+    public Builder clearChannel() {
       
-      channe_ = getDefaultInstance().getChanne();
+      channel_ = getDefaultInstance().getChannel();
       onChanged();
       return this;
     }
     /**
-     * <code>string Channe = 1;</code>
+     * <code>string Channel = 1;</code>
      */
-    public Builder setChanneBytes(
+    public Builder setChannelBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      channe_ = value;
+      channel_ = value;
       onChanged();
       return this;
     }
