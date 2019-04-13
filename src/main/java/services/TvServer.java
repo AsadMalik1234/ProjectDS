@@ -23,13 +23,14 @@ import serviceui.ServiceUI;
  * @author asadmalik
  */
 public class TvServer {
-    
+
     private static final Logger logger = Logger.getLogger(TvServer.class.getName());
 
     /* The port on which the server should run */
     private int port = 50057;
     private Server server;
-  
+    private int tvStatus = 0; // 0 is OFF; 1 is ON
+    private int channel = 0;
 
     private void start() throws Exception {
         server = ServerBuilder.forPort(port)
@@ -68,7 +69,7 @@ public class TvServer {
     }
 
     private class TvImpl extends TvGrpc.TvImplBase {
-        
+
         private Printer ui;
 
         public TvImpl() {
@@ -76,46 +77,74 @@ public class TvServer {
             String serviceType = "_Tv._udp.local.";
             ui = new ServiceUI(name + serviceType);
         }
-        
-        
-     public void tvMode(TvModeRequest request, StreamObserver<TvModeResponse> responseObserver) {
-     
-       TvFunction tvFunction = request.getTvFunction();
-       String tvModeRequest = tvFunction.getTvOn();
-       tvModeRequest = tvFunction.getTvOff();
-        ui.append(tvModeRequest);
-        
-        TvModeResponse response = TvModeResponse.newBuilder()
-                .build();
-        
-         responseObserver.onNext(response);
-          responseObserver.onCompleted();
-              
+
+        public void tvMode(TvModeRequest request, StreamObserver<TvModeResponse> responseObserver) {
+
+            TvFunction tvFunction = request.getTvFunction();
+            String tvModeRequested;
+            String tvModePerformed = null;
+
+            if (tvFunction.getTvOn() != null && !tvFunction.getTvOn().equalsIgnoreCase("")) {
+                tvModeRequested = tvFunction.getTvOn();
+                ui.append(tvModeRequested);
+
+                if (tvStatus == 0) {
+                    tvModePerformed = "TV turned on. Channel is "+channel;
+                    tvStatus = 1;
+                } else if (tvStatus == 1) {
+                    tvModePerformed = "TV already turned on";
+                }
+
+            } else if (tvFunction.getTvOff() != null && !tvFunction.getTvOff().equalsIgnoreCase("")) {
+                tvModeRequested = tvFunction.getTvOff();
+                ui.append(tvModeRequested);
+
+                if (tvStatus == 1) {
+                    tvModePerformed = "TV turned off";
+                    tvStatus = 0;
+                    channel = 0;
+                } else if (tvStatus == 0) {
+                    tvModePerformed = "TV already off";
+                }
+
+            }
+
+            TvModeResponse response = TvModeResponse.newBuilder().setMode(tvModePerformed).build();
+
+            responseObserver.onNext(response);
+            // complete the RPC call
+            responseObserver.onCompleted();
+
+        }
+
+        /**
+         */
+        public void tvChannel(TvChannelRequest request, StreamObserver<TvChannelResponse> responseObserver) {
+
+            TvFunction tvFunction = request.getTvFunction();
+            String tvChannelRequest = tvFunction.getChannel();
+            ui.append(tvChannelRequest);
+            String newChannel;
+
+            if (tvStatus == 0) {
+                newChannel = "TV is off. Please turn on the TV";
+            } else {
+                if (channel <= 4) {
+                    channel = channel + 1;
+                    newChannel = "Channel changed to " + channel;
+                } else {
+                    channel = 0;
+                    newChannel = "Channel changed to " + channel;
+                }
+            }
+
+            TvChannelResponse response = TvChannelResponse.newBuilder().setChannel(newChannel).build();
+
+            responseObserver.onNext(response);
+            // complete the RPC call
+            responseObserver.onCompleted();
+
+        }
     }
 
-    /**
-     */
-    public void tvChannel(TvChannelRequest request, StreamObserver<TvChannelResponse> responseObserver) {
-        
-         TvFunction tvFunction = request.getTvFunction();
-         String tvChannelRequest = tvFunction.getChannel();
-          ui.append(tvChannelRequest);
-          
-          TvChannelResponse response = TvChannelResponse.newBuilder()
-                  .build();
-           responseObserver.onNext(response);
-          responseObserver.onCompleted();
-          
-         
-         
-        
-       
-    }
-    }
-    
-    
-    
-    
-
-    
 }

@@ -76,33 +76,45 @@ public class TvClient implements ServiceObserver {
     public String getName() {
         return name;
     }
-        public void shutdown() throws InterruptedException {
+
+    public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
-    
-    
-    public void tvMode(String buttonName){
-      TvFunction tvFunction = TvFunction.newBuilder()
-              .build();
-      
-      TvModeRequest tvModeRequest = TvModeRequest.newBuilder()
-      .build();
-      
-      TvModeResponse tvModeResponse = blockingStub.tvMode(tvModeRequest);
-  
-       
+    public void tvMode(String buttonName) {
+
+        TvFunction tvFunction = null;
+
+        if ("TvOn".equalsIgnoreCase(buttonName)) {
+            tvFunction = TvFunction.newBuilder().setTvOn("Please turn TV on")
+                    .build();
+        } else if ("TvOff".equalsIgnoreCase(buttonName)) {
+            tvFunction = TvFunction.newBuilder().setTvOff("Please turn TV off")
+                    .build();
+        }
+
+        TvModeRequest tvModeRequest = TvModeRequest.newBuilder().setTvFunction(tvFunction).build();
+
+        TvModeResponse tvModeResponse = blockingStub.tvMode(tvModeRequest);
+
+        System.out.println(tvModeResponse.getMode());
+        ui.append(tvModeResponse.getMode());
+
     }
-    public void tvChannel(){
-          TvFunction tvFunction = TvFunction.newBuilder()
-              .build();
-          
-           TvChannelRequest tvChannelRequest = TvChannelRequest.newBuilder()
-      .build();
-      
-      TvChannelResponse tvChannelResponse = blockingStub.tvChannel(tvChannelRequest);
-           
-        
+
+    public void tvChannel() {
+
+        TvFunction tvFunction = TvFunction.newBuilder().setChannel("Please change channel")
+                .build();
+
+        TvChannelRequest tvChannelRequest = TvChannelRequest.newBuilder().setTvFunction(tvFunction)
+                .build();
+
+        TvChannelResponse tvChannelResponse = blockingStub.tvChannel(tvChannelRequest);
+
+        System.out.println(tvChannelResponse.getChannel());
+        ui.append(tvChannelResponse.getChannel());
+
     }
 
     public void switchService(String name) {

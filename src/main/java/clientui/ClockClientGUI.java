@@ -69,9 +69,9 @@ private ClockClient client;
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(84, 84, 84)
                         .addComponent(jButton1)
-                        .addGap(35, 35, 35)
+                        .addGap(75, 75, 75)
                         .addComponent(jButton2)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
