@@ -8,12 +8,7 @@ public interface ClockActionResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string Action = 1;</code>
+   * <code>int32 clockTime = 1;</code>
    */
-  java.lang.String getAction();
-  /**
-   * <code>string Action = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getActionBytes();
+  int getClockTime();
 }

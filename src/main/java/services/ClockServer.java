@@ -5,14 +5,17 @@
  */
 package services;
 
+
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 import io.grpc.stub.StreamObserver;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Logger;
-import org.Muhammad.example.clock.ClockActionRequest;
 import org.Muhammad.example.clock.ClockActionResponse;
-import org.Muhammad.example.clock.ClockFunction;
 import org.Muhammad.example.clock.ClockGrpc;
+
 import serviceui.Printer;
 import serviceui.ServiceUI;
 
@@ -21,14 +24,12 @@ import serviceui.ServiceUI;
  * @author asadmalik
  */
 public class ClockServer {
-    
-    
+
     private static final Logger logger = Logger.getLogger(ClockServer.class.getName());
 
     /* The port on which the server should run */
-    private int port = 50055;
+    private int port = 50059;
     private Server server;
-    private int lightStatus = 0;
 
     private void start() throws Exception {
         server = ServerBuilder.forPort(port)
@@ -67,31 +68,53 @@ public class ClockServer {
     }
 
     private class ClockImpl extends ClockGrpc.ClockImplBase {
-        
-          private Printer ui;
+
+        private Printer ui;
+        private int time = 0;
 
         public ClockImpl() {
             String name = "Muhammad";
             String serviceType = "_Clock._udp.local.";
             ui = new ServiceUI(name + serviceType);
         }
+
+//        @Override
+//        public void clockAction(com.google.protobuf.Empty request,io.grpc.stub.StreamObserver<ClockActionResponse> responseObserver) {
+//
+//            Timer t = new Timer();
+//            t.schedule(new RemindTask(responseObserver), 0, 2000);
+//
+//        }
         
+         public void clockAction(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.clock.ClockActionResponse> responseObserver) {
+       Timer t = new Timer();
+            t.schedule(new RemindTask(responseObserver), 0, 2000);
+
+    }
         
-         public void clockAction(ClockActionRequest request, StreamObserver<ClockActionResponse> responseObserver) {
-             
-          ClockFunction clockFunction = request.getClockFunction();
-          
-          String ClockActionRequest = clockFunction.getStart();
-        ClockActionRequest = clockFunction.getReset();
-        ui.append(ClockActionRequest);
-        
-        ClockActionResponse response = ClockActionResponse.newBuilder()
-                .build();
-         responseObserver.onNext(response);
-              
-  }
-        
+        class RemindTask extends TimerTask {
+
+            StreamObserver<ClockActionResponse> obj;
+
+            public RemindTask(StreamObserver<ClockActionResponse> j) {
+                obj = j;
+            }
+
+            @Override
+            public void run() {
+                if (time < 24) {
+                    ClockActionResponse status = ClockActionResponse.newBuilder().setClockTime(time).build();
+                    ui.append(status.toString());
+                    obj.onNext(status);
+                    time += 1;
+                } else {
+                    obj.onCompleted();
+                    this.cancel();
+                }
+            }
+        }
+
     }
 
-    
 }

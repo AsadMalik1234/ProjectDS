@@ -91,11 +91,11 @@ private ClockClient client;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       client.clockAction("Start");
+       client.clockAction();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        client.clockAction("Reset");
+//        client.clockAction("Reset");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

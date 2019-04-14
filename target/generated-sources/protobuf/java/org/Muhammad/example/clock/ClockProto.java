@@ -15,16 +15,6 @@ public final class ClockProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_clock_ClockFunction_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_clock_ClockFunction_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_clock_ClockActionRequest_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_clock_ClockActionRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_clock_ClockActionResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -38,14 +28,12 @@ public final class ClockProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013clock.proto\022\005clock\"-\n\rClockFunction\022\r\n" +
-      "\005Start\030\001 \001(\t\022\r\n\005Reset\030\002 \001(\t\"A\n\022ClockActi" +
-      "onRequest\022+\n\rclockFunction\030\001 \001(\0132\024.clock" +
-      ".ClockFunction\"%\n\023ClockActionResponse\022\016\n" +
-      "\006Action\030\001 \001(\t2O\n\005Clock\022F\n\013ClockAction\022\031." +
-      "clock.ClockActionRequest\032\032.clock.ClockAc" +
-      "tionResponse\"\000B*\n\032org.Muhammad.example.c" +
-      "lockB\nClockProtoP\001b\006proto3"
+      "\n\013clock.proto\022\005clock\032\033google/protobuf/em" +
+      "pty.proto\"(\n\023ClockActionResponse\022\021\n\tcloc" +
+      "kTime\030\001 \001(\0052N\n\005Clock\022E\n\013ClockAction\022\026.go" +
+      "ogle.protobuf.Empty\032\032.clock.ClockActionR" +
+      "esponse\"\0000\001B*\n\032org.Muhammad.example.cloc" +
+      "kB\nClockProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -58,25 +46,15 @@ public final class ClockProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.EmptyProto.getDescriptor(),
         }, assigner);
-    internal_static_clock_ClockFunction_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_clock_ClockFunction_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_clock_ClockFunction_descriptor,
-        new java.lang.String[] { "Start", "Reset", });
-    internal_static_clock_ClockActionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_clock_ClockActionRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_clock_ClockActionRequest_descriptor,
-        new java.lang.String[] { "ClockFunction", });
     internal_static_clock_ClockActionResponse_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_clock_ClockActionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_clock_ClockActionResponse_descriptor,
-        new java.lang.String[] { "Action", });
+        new java.lang.String[] { "ClockTime", });
+    com.google.protobuf.EmptyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

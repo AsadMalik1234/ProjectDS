@@ -6,14 +6,19 @@
 package client;
 
 import clientui.ClockClientGUI;
+import com.google.protobuf.Empty;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import org.Muhammad.example.clock.ClockActionRequest;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.Muhammad.example.clock.ClockActionResponse;
-import org.Muhammad.example.clock.ClockFunction;
 import org.Muhammad.example.clock.ClockGrpc;
+
+
 
 /**
  *
@@ -27,6 +32,7 @@ public class ClockClient implements ServiceObserver {
     private ManagedChannel channel;
     protected ServiceDescription current;
     private ClockGrpc.ClockBlockingStub blockingStub;
+    private static final Logger logger = Logger.getLogger(ClockClient.class.getName());
 
     public ClockClient() {
 
@@ -74,15 +80,33 @@ public class ClockClient implements ServiceObserver {
     public String getName() {
         return name;
     }
+        public void shutdown() throws InterruptedException {
+        channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+    }
+        
+        public void clockAction() {
+          try {
 
-    public void clockAction(String buttonName) {
-        ClockFunction clockFunction = ClockFunction.newBuilder()
-                .build();
+            new Thread() {
+                public void run() {
+                    
+                    Empty request = Empty.newBuilder().build();
 
-        ClockActionRequest clockActionRequest = ClockActionRequest.newBuilder()
-                .build();
+                    Iterator<ClockActionResponse> response = blockingStub.clockAction(request);
+                    while (response.hasNext()) {
+                        ui.append(response.next().toString());
+                    }
+                }
+            }.start();
 
-        ClockActionResponse clockActionResponse = blockingStub.clockAction(clockActionRequest);
+        } catch (RuntimeException e) {
+            logger.log(Level.WARNING, "RPC failed", e);
+        }
+         }
+
+
+    public void clockReset() {
+
     }
 
     public void switchService(String name) {
@@ -92,5 +116,7 @@ public class ClockClient implements ServiceObserver {
     public static void main(String[] args) {
         new ClockClient();
     }
+
+   
 
 }

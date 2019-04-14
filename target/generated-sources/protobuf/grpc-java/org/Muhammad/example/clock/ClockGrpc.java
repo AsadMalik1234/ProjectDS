@@ -27,28 +27,28 @@ public final class ClockGrpc {
   public static final String SERVICE_NAME = "clock.Clock";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<org.Muhammad.example.clock.ClockActionRequest,
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       org.Muhammad.example.clock.ClockActionResponse> getClockActionMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ClockAction",
-      requestType = org.Muhammad.example.clock.ClockActionRequest.class,
+      requestType = com.google.protobuf.Empty.class,
       responseType = org.Muhammad.example.clock.ClockActionResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.Muhammad.example.clock.ClockActionRequest,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       org.Muhammad.example.clock.ClockActionResponse> getClockActionMethod() {
-    io.grpc.MethodDescriptor<org.Muhammad.example.clock.ClockActionRequest, org.Muhammad.example.clock.ClockActionResponse> getClockActionMethod;
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.Muhammad.example.clock.ClockActionResponse> getClockActionMethod;
     if ((getClockActionMethod = ClockGrpc.getClockActionMethod) == null) {
       synchronized (ClockGrpc.class) {
         if ((getClockActionMethod = ClockGrpc.getClockActionMethod) == null) {
           ClockGrpc.getClockActionMethod = getClockActionMethod = 
-              io.grpc.MethodDescriptor.<org.Muhammad.example.clock.ClockActionRequest, org.Muhammad.example.clock.ClockActionResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.Muhammad.example.clock.ClockActionResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "clock.Clock", "ClockAction"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.Muhammad.example.clock.ClockActionRequest.getDefaultInstance()))
+                  com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   org.Muhammad.example.clock.ClockActionResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new ClockMethodDescriptorSupplier("ClockAction"))
@@ -88,7 +88,7 @@ public final class ClockGrpc {
 
     /**
      */
-    public void clockAction(org.Muhammad.example.clock.ClockActionRequest request,
+    public void clockAction(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<org.Muhammad.example.clock.ClockActionResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getClockActionMethod(), responseObserver);
     }
@@ -97,9 +97,9 @@ public final class ClockGrpc {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getClockActionMethod(),
-            asyncUnaryCall(
+            asyncServerStreamingCall(
               new MethodHandlers<
-                org.Muhammad.example.clock.ClockActionRequest,
+                com.google.protobuf.Empty,
                 org.Muhammad.example.clock.ClockActionResponse>(
                   this, METHODID_CLOCK_ACTION)))
           .build();
@@ -126,9 +126,9 @@ public final class ClockGrpc {
 
     /**
      */
-    public void clockAction(org.Muhammad.example.clock.ClockActionRequest request,
+    public void clockAction(com.google.protobuf.Empty request,
         io.grpc.stub.StreamObserver<org.Muhammad.example.clock.ClockActionResponse> responseObserver) {
-      asyncUnaryCall(
+      asyncServerStreamingCall(
           getChannel().newCall(getClockActionMethod(), getCallOptions()), request, responseObserver);
     }
   }
@@ -153,8 +153,9 @@ public final class ClockGrpc {
 
     /**
      */
-    public org.Muhammad.example.clock.ClockActionResponse clockAction(org.Muhammad.example.clock.ClockActionRequest request) {
-      return blockingUnaryCall(
+    public java.util.Iterator<org.Muhammad.example.clock.ClockActionResponse> clockAction(
+        com.google.protobuf.Empty request) {
+      return blockingServerStreamingCall(
           getChannel(), getClockActionMethod(), getCallOptions(), request);
     }
   }
@@ -175,14 +176,6 @@ public final class ClockGrpc {
     protected ClockFutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new ClockFutureStub(channel, callOptions);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<org.Muhammad.example.clock.ClockActionResponse> clockAction(
-        org.Muhammad.example.clock.ClockActionRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getClockActionMethod(), getCallOptions()), request);
     }
   }
 
@@ -206,7 +199,7 @@ public final class ClockGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_CLOCK_ACTION:
-          serviceImpl.clockAction((org.Muhammad.example.clock.ClockActionRequest) request,
+          serviceImpl.clockAction((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<org.Muhammad.example.clock.ClockActionResponse>) responseObserver);
           break;
         default:

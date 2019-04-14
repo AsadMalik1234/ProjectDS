@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ClockActionResponse() {
-    action_ = "";
+    clockTime_ = 0;
   }
 
   @java.lang.Override
@@ -43,10 +43,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 8: {
 
-            action_ = s;
+            clockTime_ = input.readInt32();
             break;
           }
           default: {
@@ -81,38 +80,13 @@ private static final long serialVersionUID = 0L;
             org.Muhammad.example.clock.ClockActionResponse.class, org.Muhammad.example.clock.ClockActionResponse.Builder.class);
   }
 
-  public static final int ACTION_FIELD_NUMBER = 1;
-  private volatile java.lang.Object action_;
+  public static final int CLOCKTIME_FIELD_NUMBER = 1;
+  private int clockTime_;
   /**
-   * <code>string Action = 1;</code>
+   * <code>int32 clockTime = 1;</code>
    */
-  public java.lang.String getAction() {
-    java.lang.Object ref = action_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      action_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string Action = 1;</code>
-   */
-  public com.google.protobuf.ByteString
-      getActionBytes() {
-    java.lang.Object ref = action_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      action_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public int getClockTime() {
+    return clockTime_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -129,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getActionBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, action_);
+    if (clockTime_ != 0) {
+      output.writeInt32(1, clockTime_);
     }
     unknownFields.writeTo(output);
   }
@@ -141,8 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getActionBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, action_);
+    if (clockTime_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, clockTime_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -160,8 +135,8 @@ private static final long serialVersionUID = 0L;
     org.Muhammad.example.clock.ClockActionResponse other = (org.Muhammad.example.clock.ClockActionResponse) obj;
 
     boolean result = true;
-    result = result && getAction()
-        .equals(other.getAction());
+    result = result && (getClockTime()
+        == other.getClockTime());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -173,8 +148,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + ACTION_FIELD_NUMBER;
-    hash = (53 * hash) + getAction().hashCode();
+    hash = (37 * hash) + CLOCKTIME_FIELD_NUMBER;
+    hash = (53 * hash) + getClockTime();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -308,7 +283,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      action_ = "";
+      clockTime_ = 0;
 
       return this;
     }
@@ -336,7 +311,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public org.Muhammad.example.clock.ClockActionResponse buildPartial() {
       org.Muhammad.example.clock.ClockActionResponse result = new org.Muhammad.example.clock.ClockActionResponse(this);
-      result.action_ = action_;
+      result.clockTime_ = clockTime_;
       onBuilt();
       return result;
     }
@@ -385,9 +360,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(org.Muhammad.example.clock.ClockActionResponse other) {
       if (other == org.Muhammad.example.clock.ClockActionResponse.getDefaultInstance()) return this;
-      if (!other.getAction().isEmpty()) {
-        action_ = other.action_;
-        onChanged();
+      if (other.getClockTime() != 0) {
+        setClockTime(other.getClockTime());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -418,71 +392,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object action_ = "";
+    private int clockTime_ ;
     /**
-     * <code>string Action = 1;</code>
+     * <code>int32 clockTime = 1;</code>
      */
-    public java.lang.String getAction() {
-      java.lang.Object ref = action_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        action_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public int getClockTime() {
+      return clockTime_;
     }
     /**
-     * <code>string Action = 1;</code>
+     * <code>int32 clockTime = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getActionBytes() {
-      java.lang.Object ref = action_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        action_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string Action = 1;</code>
-     */
-    public Builder setAction(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      action_ = value;
+    public Builder setClockTime(int value) {
+      
+      clockTime_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string Action = 1;</code>
+     * <code>int32 clockTime = 1;</code>
      */
-    public Builder clearAction() {
+    public Builder clearClockTime() {
       
-      action_ = getDefaultInstance().getAction();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string Action = 1;</code>
-     */
-    public Builder setActionBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      action_ = value;
+      clockTime_ = 0;
       onChanged();
       return this;
     }

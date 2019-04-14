@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "google/protobuf/empty.proto";
 /**
  * This is an example of a protobuf message.
  */
@@ -11,21 +12,10 @@ option java_package = "org.Muhammad.example.clock";
 option java_outer_classname = "ClockProto";
 
 service Clock {
+    rpc ClockAction(google.protobuf.Empty) returns (stream ClockActionResponse) {};
 
-   rpc ClockAction(ClockActionRequest) returns (ClockActionResponse) {};
-}
-
-message ClockFunction{
-    string Start = 1;
-    string Reset = 2;
-}
-
-
-message ClockActionRequest {
-    ClockFunction clockFunction = 1;
 }
 
 message ClockActionResponse {
-   string Action = 1;
+  int32 clockTime = 1;
 }
-
