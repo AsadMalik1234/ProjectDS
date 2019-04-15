@@ -36,7 +36,7 @@ public class ClockServer {
                 .addService(new ClockImpl())
                 .build()
                 .start();
-        JmDNSRegistrationHelper helper = new JmDNSRegistrationHelper("Muhammad", "_Light._udp.local.", "", port);
+        JmDNSRegistrationHelper helper = new JmDNSRegistrationHelper("Muhammad", "_Clock._udp.local.", "", port);
         logger.info("Server started, listening on " + port);
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
