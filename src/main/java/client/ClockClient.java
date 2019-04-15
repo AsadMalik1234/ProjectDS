@@ -94,7 +94,7 @@ public class ClockClient implements ServiceObserver {
 
                     Iterator<ClockActionResponse> response = blockingStub.clockAction(request);
                     while (response.hasNext()) {
-                        ui.append(response.next().toString());
+                        ui.append("Clock Time: "+ response.next().getClockTime()+ "\n");
                     }
                 }
             }.start();

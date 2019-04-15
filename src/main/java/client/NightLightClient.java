@@ -43,6 +43,7 @@ public class NightLightClient implements ServiceObserver {
                 ui.setVisible(true);
             }
         });
+        //serviceAdded(new ServiceDescription("18.224.252.126", 50055));
 
     }
 

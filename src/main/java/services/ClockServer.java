@@ -5,7 +5,8 @@
  */
 package services;
 
-
+import client.NightLightClient;
+import client.ServiceDescription;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
@@ -26,10 +27,12 @@ import serviceui.ServiceUI;
 public class ClockServer {
 
     private static final Logger logger = Logger.getLogger(ClockServer.class.getName());
+    NightLightClient nightLightClient = new NightLightClient();
 
     /* The port on which the server should run */
     private int port = 50059;
     private Server server;
+    private int time = 0;
 
     private void start() throws Exception {
         server = ServerBuilder.forPort(port)
@@ -70,7 +73,6 @@ public class ClockServer {
     private class ClockImpl extends ClockGrpc.ClockImplBase {
 
         private Printer ui;
-        private int time = 0;
 
         public ClockImpl() {
             String name = "Muhammad";
@@ -78,21 +80,15 @@ public class ClockServer {
             ui = new ServiceUI(name + serviceType);
         }
 
-//        @Override
-//        public void clockAction(com.google.protobuf.Empty request,io.grpc.stub.StreamObserver<ClockActionResponse> responseObserver) {
-//
-//            Timer t = new Timer();
-//            t.schedule(new RemindTask(responseObserver), 0, 2000);
-//
-//        }
-        
-         public void clockAction(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<org.Muhammad.example.clock.ClockActionResponse> responseObserver) {
-       Timer t = new Timer();
+        @Override
+        public void clockAction(com.google.protobuf.Empty request, io.grpc.stub.StreamObserver<ClockActionResponse> responseObserver) {
+
+            nightLightClient.serviceAdded(new ServiceDescription("127.0.0.1", 50055));
+            Timer t = new Timer();
             t.schedule(new RemindTask(responseObserver), 0, 2000);
 
-    }
-        
+        }
+
         class RemindTask extends TimerTask {
 
             StreamObserver<ClockActionResponse> obj;
@@ -105,12 +101,17 @@ public class ClockServer {
             public void run() {
                 if (time < 24) {
                     ClockActionResponse status = ClockActionResponse.newBuilder().setClockTime(time).build();
-                    ui.append(status.toString());
+                    ui.append("Clock Time: "+ status.getClockTime()+ "\n");
+                    if(time == 18){
+                        nightLightClient.lightOn();
+                    }else if (time == 6){
+                        nightLightClient.lightOff();
+                    }
                     obj.onNext(status);
                     time += 1;
                 } else {
-                    obj.onCompleted();
-                    this.cancel();
+                    time = 0;
+                    
                 }
             }
         }
