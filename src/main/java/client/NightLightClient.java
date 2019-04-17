@@ -11,6 +11,8 @@ import io.grpc.ManagedChannelBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.Muhammad.example.NightLight.ChangeColourRequest;
+import org.Muhammad.example.NightLight.ChangeColourResponse;
 import org.Muhammad.example.NightLight.LightGrpc;
 import org.Muhammad.example.NightLight.LightOffRequest;
 import org.Muhammad.example.NightLight.LightOffResponse;
@@ -68,7 +70,7 @@ public class NightLightClient implements ServiceObserver {
                 .usePlaintext(true)
                 .build();
         blockingStub = LightGrpc.newBlockingStub(channel);
-   
+
     }
 
     public boolean interested(String type) {
@@ -113,6 +115,16 @@ public class NightLightClient implements ServiceObserver {
         System.out.println(LightOffResponse.getLightstatus());
         ui.append(LightOffResponse.getLightstatus());
 
+    }
+
+    public void changeColour() {
+        Lighting lighting = Lighting.newBuilder().setChangeColour("Please change light color").build();
+
+        ChangeColourRequest changeColourRequest = ChangeColourRequest.newBuilder().setLighting(lighting).build();
+
+        ChangeColourResponse changeColourResponse = blockingStub.changeColour(changeColourRequest);
+        System.out.println(changeColourResponse.getChangecolour());
+        ui.append(changeColourResponse.getChangecolour());
     }
 
     public void switchService(String name) {

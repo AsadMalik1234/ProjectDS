@@ -26,4 +26,14 @@ public interface LightingOrBuilder extends
    */
   com.google.protobuf.ByteString
       getLightOffBytes();
+
+  /**
+   * <code>string change_colour = 3;</code>
+   */
+  java.lang.String getChangeColour();
+  /**
+   * <code>string change_colour = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getChangeColourBytes();
 }

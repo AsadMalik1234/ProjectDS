@@ -17,8 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.Muhammad.example.clock.ClockActionResponse;
 import org.Muhammad.example.clock.ClockGrpc;
-
-
+import org.Muhammad.example.clock.ClockResetRequest;
+import org.Muhammad.example.clock.ClockResetResponse;
 
 /**
  *
@@ -80,21 +80,22 @@ public class ClockClient implements ServiceObserver {
     public String getName() {
         return name;
     }
-        public void shutdown() throws InterruptedException {
+
+    public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
-        
-        public void clockAction() {
-          try {
+
+    public void clockAction() {
+        try {
 
             new Thread() {
                 public void run() {
-                    
+
                     Empty request = Empty.newBuilder().build();
 
                     Iterator<ClockActionResponse> response = blockingStub.clockAction(request);
                     while (response.hasNext()) {
-                        ui.append("Clock Time: "+ response.next().getClockTime()+ "\n");
+                        ui.append("Clock Time: " + response.next().getClockTime() + "\n");
                     }
                 }
             }.start();
@@ -102,10 +103,16 @@ public class ClockClient implements ServiceObserver {
         } catch (RuntimeException e) {
             logger.log(Level.WARNING, "RPC failed", e);
         }
-         }
+    }
 
-
-    public void clockReset() {
+    public void resetClock() {
+        
+        ClockResetRequest clockResetRequest = ClockResetRequest.newBuilder().setClockResetRequest("Please reset clock").build();
+        
+        ClockResetResponse clockResetResponse = blockingStub.resetClock(clockResetRequest);
+        
+        System.out.println(clockResetResponse.getClockResetResponse());
+        ui.append(clockResetResponse.getClockResetResponse());
 
     }
 
@@ -116,7 +123,5 @@ public class ClockClient implements ServiceObserver {
     public static void main(String[] args) {
         new ClockClient();
     }
-
-   
 
 }

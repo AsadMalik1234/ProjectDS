@@ -13,9 +13,18 @@ option java_outer_classname = "ClockProto";
 
 service Clock {
     rpc ClockAction(google.protobuf.Empty) returns (stream ClockActionResponse) {};
+    rpc ResetClock(ClockResetRequest) returns (ClockResetResponse){};
 
 }
 
 message ClockActionResponse {
   int32 clockTime = 1;
+}
+
+message ClockResetRequest {
+    string clockResetRequest = 1;
+}
+
+message ClockResetResponse {
+    string clockResetResponse = 1;
 }

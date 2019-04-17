@@ -59,6 +59,38 @@ public final class ClockGrpc {
      return getClockActionMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.Muhammad.example.clock.ClockResetRequest,
+      org.Muhammad.example.clock.ClockResetResponse> getResetClockMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ResetClock",
+      requestType = org.Muhammad.example.clock.ClockResetRequest.class,
+      responseType = org.Muhammad.example.clock.ClockResetResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.Muhammad.example.clock.ClockResetRequest,
+      org.Muhammad.example.clock.ClockResetResponse> getResetClockMethod() {
+    io.grpc.MethodDescriptor<org.Muhammad.example.clock.ClockResetRequest, org.Muhammad.example.clock.ClockResetResponse> getResetClockMethod;
+    if ((getResetClockMethod = ClockGrpc.getResetClockMethod) == null) {
+      synchronized (ClockGrpc.class) {
+        if ((getResetClockMethod = ClockGrpc.getResetClockMethod) == null) {
+          ClockGrpc.getResetClockMethod = getResetClockMethod = 
+              io.grpc.MethodDescriptor.<org.Muhammad.example.clock.ClockResetRequest, org.Muhammad.example.clock.ClockResetResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "clock.Clock", "ResetClock"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.Muhammad.example.clock.ClockResetRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.Muhammad.example.clock.ClockResetResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClockMethodDescriptorSupplier("ResetClock"))
+                  .build();
+          }
+        }
+     }
+     return getResetClockMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -93,6 +125,13 @@ public final class ClockGrpc {
       asyncUnimplementedUnaryCall(getClockActionMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void resetClock(org.Muhammad.example.clock.ClockResetRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.clock.ClockResetResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getResetClockMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -102,6 +141,13 @@ public final class ClockGrpc {
                 com.google.protobuf.Empty,
                 org.Muhammad.example.clock.ClockActionResponse>(
                   this, METHODID_CLOCK_ACTION)))
+          .addMethod(
+            getResetClockMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.Muhammad.example.clock.ClockResetRequest,
+                org.Muhammad.example.clock.ClockResetResponse>(
+                  this, METHODID_RESET_CLOCK)))
           .build();
     }
   }
@@ -131,6 +177,14 @@ public final class ClockGrpc {
       asyncServerStreamingCall(
           getChannel().newCall(getClockActionMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void resetClock(org.Muhammad.example.clock.ClockResetRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.clock.ClockResetResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getResetClockMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -158,6 +212,13 @@ public final class ClockGrpc {
       return blockingServerStreamingCall(
           getChannel(), getClockActionMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public org.Muhammad.example.clock.ClockResetResponse resetClock(org.Muhammad.example.clock.ClockResetRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getResetClockMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -177,9 +238,18 @@ public final class ClockGrpc {
         io.grpc.CallOptions callOptions) {
       return new ClockFutureStub(channel, callOptions);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.Muhammad.example.clock.ClockResetResponse> resetClock(
+        org.Muhammad.example.clock.ClockResetRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getResetClockMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CLOCK_ACTION = 0;
+  private static final int METHODID_RESET_CLOCK = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -201,6 +271,10 @@ public final class ClockGrpc {
         case METHODID_CLOCK_ACTION:
           serviceImpl.clockAction((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<org.Muhammad.example.clock.ClockActionResponse>) responseObserver);
+          break;
+        case METHODID_RESET_CLOCK:
+          serviceImpl.resetClock((org.Muhammad.example.clock.ClockResetRequest) request,
+              (io.grpc.stub.StreamObserver<org.Muhammad.example.clock.ClockResetResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -264,6 +338,7 @@ public final class ClockGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ClockFileDescriptorSupplier())
               .addMethod(getClockActionMethod())
+              .addMethod(getResetClockMethod())
               .build();
         }
       }

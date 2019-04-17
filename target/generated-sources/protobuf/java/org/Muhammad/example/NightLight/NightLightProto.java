@@ -39,6 +39,16 @@ public final class NightLightProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_NightLight_LightOffResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_NightLight_ChangeColourRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_NightLight_ChangeColourRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_NightLight_ChangeColourResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_NightLight_ChangeColourResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -48,19 +58,24 @@ public final class NightLightProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020nightLight.proto\022\nNightLight\"/\n\010Lighti" +
-      "ng\022\020\n\010light_on\030\001 \001(\t\022\021\n\tlight_off\030\002 \001(\t\"" +
-      "8\n\016LightOnRequest\022&\n\010lighting\030\001 \001(\0132\024.Ni" +
-      "ghtLight.Lighting\"&\n\017LightOnResponse\022\023\n\013" +
-      "lightstatus\030\001 \001(\t\"9\n\017LightOffRequest\022&\n\010" +
-      "lighting\030\001 \001(\0132\024.NightLight.Lighting\"\'\n\020" +
-      "LightOffResponse\022\023\n\013lightstatus\030\001 \001(\t2\226\001" +
-      "\n\005Light\022D\n\007LightOn\022\032.NightLight.LightOnR" +
-      "equest\032\033.NightLight.LightOnResponse\"\000\022G\n" +
-      "\010LightOff\022\033.NightLight.LightOffRequest\032\034" +
-      ".NightLight.LightOffResponse\"\000B4\n\037org.Mu" +
-      "hammad.example.NightLightB\017NightLightPro" +
-      "toP\001b\006proto3"
+      "\n\020nightLight.proto\022\nNightLight\"F\n\010Lighti" +
+      "ng\022\020\n\010light_on\030\001 \001(\t\022\021\n\tlight_off\030\002 \001(\t\022" +
+      "\025\n\rchange_colour\030\003 \001(\t\"8\n\016LightOnRequest" +
+      "\022&\n\010lighting\030\001 \001(\0132\024.NightLight.Lighting" +
+      "\"&\n\017LightOnResponse\022\023\n\013lightstatus\030\001 \001(\t" +
+      "\"9\n\017LightOffRequest\022&\n\010lighting\030\001 \001(\0132\024." +
+      "NightLight.Lighting\"\'\n\020LightOffResponse\022" +
+      "\023\n\013lightstatus\030\001 \001(\t\"=\n\023ChangeColourRequ" +
+      "est\022&\n\010lighting\030\001 \001(\0132\024.NightLight.Light" +
+      "ing\",\n\024ChangeColourResponse\022\024\n\014changecol" +
+      "our\030\001 \001(\t2\353\001\n\005Light\022D\n\007LightOn\022\032.NightLi" +
+      "ght.LightOnRequest\032\033.NightLight.LightOnR" +
+      "esponse\"\000\022G\n\010LightOff\022\033.NightLight.Light" +
+      "OffRequest\032\034.NightLight.LightOffResponse" +
+      "\"\000\022S\n\014ChangeColour\022\037.NightLight.ChangeCo" +
+      "lourRequest\032 .NightLight.ChangeColourRes" +
+      "ponse\"\000B4\n\037org.Muhammad.example.NightLig" +
+      "htB\017NightLightProtoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -79,7 +94,7 @@ public final class NightLightProto {
     internal_static_NightLight_Lighting_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_NightLight_Lighting_descriptor,
-        new java.lang.String[] { "LightOn", "LightOff", });
+        new java.lang.String[] { "LightOn", "LightOff", "ChangeColour", });
     internal_static_NightLight_LightOnRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_NightLight_LightOnRequest_fieldAccessorTable = new
@@ -104,6 +119,18 @@ public final class NightLightProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_NightLight_LightOffResponse_descriptor,
         new java.lang.String[] { "Lightstatus", });
+    internal_static_NightLight_ChangeColourRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_NightLight_ChangeColourRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_NightLight_ChangeColourRequest_descriptor,
+        new java.lang.String[] { "Lighting", });
+    internal_static_NightLight_ChangeColourResponse_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_NightLight_ChangeColourResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_NightLight_ChangeColourResponse_descriptor,
+        new java.lang.String[] { "Changecolour", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

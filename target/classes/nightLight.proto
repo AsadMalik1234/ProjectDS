@@ -13,12 +13,14 @@ package NightLight;
 service Light{
     rpc LightOn(LightOnRequest) returns (LightOnResponse){};
     rpc LightOff(LightOffRequest) returns (LightOffResponse){};
+    rpc ChangeColour(ChangeColourRequest) returns (ChangeColourResponse){};
 
 }
 
 message Lighting{
 string light_on = 1;
 string light_off = 2;
+string change_colour = 3;
  
 }
 
@@ -39,5 +41,14 @@ message LightOffResponse {
     string lightstatus = 1;
 }
 
+
+
+message ChangeColourRequest {
+    Lighting lighting = 1;
+}
+
+message ChangeColourResponse {
+    string changecolour = 1;
+}
 
 

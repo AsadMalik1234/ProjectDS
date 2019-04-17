@@ -8,9 +8,12 @@ package services;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
+import org.Muhammad.example.NightLight.ChangeColourRequest;
+import org.Muhammad.example.NightLight.ChangeColourResponse;
 import org.Muhammad.example.NightLight.LightGrpc;
 import org.Muhammad.example.NightLight.LightOffRequest;
 import org.Muhammad.example.NightLight.LightOffResponse;
@@ -31,7 +34,8 @@ public class NightLightServer {
     /* The port on which the server should run */
     private int port = 50055;
     private Server server;
-    private int lightStatus = 0;
+    private int lightStatus = 0; // 0 is OFF, 1 is ON
+    private int colorCode = 0;
 
     private void start() throws Exception {
         server = ServerBuilder.forPort(port)
@@ -85,13 +89,13 @@ public class NightLightServer {
             String lightActionRequested = lighting.getLightOn();
             ui.append(lightActionRequested);
             String lightstatus;
-            if(lightStatus == 0){
-                lightStatus=1; //Light is on
+            if (lightStatus == 0) {
+                lightStatus = 1; //Light is on
                 lightstatus = "Light Turned On";
-            }else{
+            } else {
                 lightstatus = "Light already On";
             }
-            
+
             LightOnResponse response = LightOnResponse.newBuilder()
                     .setLightstatus(lightstatus)
                     .build();
@@ -111,10 +115,10 @@ public class NightLightServer {
             String lightActionRequested = lighting.getLightOff();
             ui.append(lightActionRequested);
             String lightstatus;
-            if(lightStatus == 1){
-                lightStatus=0; //Light is off
+            if (lightStatus == 1) {
+                lightStatus = 0; //Light is off
                 lightstatus = "Light Turned off";
-            }else{
+            } else {
                 lightstatus = "Light already off";
             }
 
@@ -128,7 +132,36 @@ public class NightLightServer {
             responseObserver.onCompleted();
 
         }
-        
+
+        public void changeColour(ChangeColourRequest request, StreamObserver<ChangeColourResponse> responseObserver) {
+
+            String[] colors = {"Yellow", "Red", "Green"};
+            Lighting lighting = request.getLighting();
+            String lightActionRequested = lighting.getChangeColour();
+            ui.append(lightActionRequested);
+            String lightstatus;
+
+            if (lightStatus == 1) {
+                if (colorCode < 2) {
+                    colorCode = colorCode + 1;
+                    lightstatus = "Color changed to " + colors[colorCode];
+                } else {
+                    colorCode = 0;
+                    lightstatus = "Color changed to " + colors[colorCode];
+                }
+            }else{
+                lightstatus = "Please turn on the light";
+            }
+
+            ChangeColourResponse response = ChangeColourResponse.newBuilder()
+                    .setChangecolour(lightstatus)
+                    .build();
+
+            responseObserver.onNext(response);
+
+            // complete the RPC call
+            responseObserver.onCompleted();
+        }
 
     }
 

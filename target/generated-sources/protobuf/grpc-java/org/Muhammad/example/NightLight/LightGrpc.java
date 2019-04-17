@@ -91,6 +91,38 @@ public final class LightGrpc {
      return getLightOffMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.ChangeColourRequest,
+      org.Muhammad.example.NightLight.ChangeColourResponse> getChangeColourMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ChangeColour",
+      requestType = org.Muhammad.example.NightLight.ChangeColourRequest.class,
+      responseType = org.Muhammad.example.NightLight.ChangeColourResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.ChangeColourRequest,
+      org.Muhammad.example.NightLight.ChangeColourResponse> getChangeColourMethod() {
+    io.grpc.MethodDescriptor<org.Muhammad.example.NightLight.ChangeColourRequest, org.Muhammad.example.NightLight.ChangeColourResponse> getChangeColourMethod;
+    if ((getChangeColourMethod = LightGrpc.getChangeColourMethod) == null) {
+      synchronized (LightGrpc.class) {
+        if ((getChangeColourMethod = LightGrpc.getChangeColourMethod) == null) {
+          LightGrpc.getChangeColourMethod = getChangeColourMethod = 
+              io.grpc.MethodDescriptor.<org.Muhammad.example.NightLight.ChangeColourRequest, org.Muhammad.example.NightLight.ChangeColourResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "NightLight.Light", "ChangeColour"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.Muhammad.example.NightLight.ChangeColourRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.Muhammad.example.NightLight.ChangeColourResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new LightMethodDescriptorSupplier("ChangeColour"))
+                  .build();
+          }
+        }
+     }
+     return getChangeColourMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -132,6 +164,13 @@ public final class LightGrpc {
       asyncUnimplementedUnaryCall(getLightOffMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void changeColour(org.Muhammad.example.NightLight.ChangeColourRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.ChangeColourResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getChangeColourMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -148,6 +187,13 @@ public final class LightGrpc {
                 org.Muhammad.example.NightLight.LightOffRequest,
                 org.Muhammad.example.NightLight.LightOffResponse>(
                   this, METHODID_LIGHT_OFF)))
+          .addMethod(
+            getChangeColourMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                org.Muhammad.example.NightLight.ChangeColourRequest,
+                org.Muhammad.example.NightLight.ChangeColourResponse>(
+                  this, METHODID_CHANGE_COLOUR)))
           .build();
     }
   }
@@ -185,6 +231,14 @@ public final class LightGrpc {
       asyncUnaryCall(
           getChannel().newCall(getLightOffMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void changeColour(org.Muhammad.example.NightLight.ChangeColourRequest request,
+        io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.ChangeColourResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getChangeColourMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -217,6 +271,13 @@ public final class LightGrpc {
     public org.Muhammad.example.NightLight.LightOffResponse lightOff(org.Muhammad.example.NightLight.LightOffRequest request) {
       return blockingUnaryCall(
           getChannel(), getLightOffMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.Muhammad.example.NightLight.ChangeColourResponse changeColour(org.Muhammad.example.NightLight.ChangeColourRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getChangeColourMethod(), getCallOptions(), request);
     }
   }
 
@@ -253,10 +314,19 @@ public final class LightGrpc {
       return futureUnaryCall(
           getChannel().newCall(getLightOffMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.Muhammad.example.NightLight.ChangeColourResponse> changeColour(
+        org.Muhammad.example.NightLight.ChangeColourRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getChangeColourMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_LIGHT_ON = 0;
   private static final int METHODID_LIGHT_OFF = 1;
+  private static final int METHODID_CHANGE_COLOUR = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -282,6 +352,10 @@ public final class LightGrpc {
         case METHODID_LIGHT_OFF:
           serviceImpl.lightOff((org.Muhammad.example.NightLight.LightOffRequest) request,
               (io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.LightOffResponse>) responseObserver);
+          break;
+        case METHODID_CHANGE_COLOUR:
+          serviceImpl.changeColour((org.Muhammad.example.NightLight.ChangeColourRequest) request,
+              (io.grpc.stub.StreamObserver<org.Muhammad.example.NightLight.ChangeColourResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -346,6 +420,7 @@ public final class LightGrpc {
               .setSchemaDescriptor(new LightFileDescriptorSupplier())
               .addMethod(getLightOnMethod())
               .addMethod(getLightOffMethod())
+              .addMethod(getChangeColourMethod())
               .build();
         }
       }

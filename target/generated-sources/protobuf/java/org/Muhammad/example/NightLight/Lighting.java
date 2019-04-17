@@ -18,6 +18,7 @@ private static final long serialVersionUID = 0L;
   private Lighting() {
     lightOn_ = "";
     lightOff_ = "";
+    changeColour_ = "";
   }
 
   @java.lang.Override
@@ -54,6 +55,12 @@ private static final long serialVersionUID = 0L;
             java.lang.String s = input.readStringRequireUtf8();
 
             lightOff_ = s;
+            break;
+          }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            changeColour_ = s;
             break;
           }
           default: {
@@ -156,6 +163,40 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int CHANGE_COLOUR_FIELD_NUMBER = 3;
+  private volatile java.lang.Object changeColour_;
+  /**
+   * <code>string change_colour = 3;</code>
+   */
+  public java.lang.String getChangeColour() {
+    java.lang.Object ref = changeColour_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      changeColour_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string change_colour = 3;</code>
+   */
+  public com.google.protobuf.ByteString
+      getChangeColourBytes() {
+    java.lang.Object ref = changeColour_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      changeColour_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -176,6 +217,9 @@ private static final long serialVersionUID = 0L;
     if (!getLightOffBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, lightOff_);
     }
+    if (!getChangeColourBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, changeColour_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -190,6 +234,9 @@ private static final long serialVersionUID = 0L;
     }
     if (!getLightOffBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, lightOff_);
+    }
+    if (!getChangeColourBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, changeColour_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -211,6 +258,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getLightOn());
     result = result && getLightOff()
         .equals(other.getLightOff());
+    result = result && getChangeColour()
+        .equals(other.getChangeColour());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -226,6 +275,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getLightOn().hashCode();
     hash = (37 * hash) + LIGHT_OFF_FIELD_NUMBER;
     hash = (53 * hash) + getLightOff().hashCode();
+    hash = (37 * hash) + CHANGE_COLOUR_FIELD_NUMBER;
+    hash = (53 * hash) + getChangeColour().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -363,6 +414,8 @@ private static final long serialVersionUID = 0L;
 
       lightOff_ = "";
 
+      changeColour_ = "";
+
       return this;
     }
 
@@ -391,6 +444,7 @@ private static final long serialVersionUID = 0L;
       org.Muhammad.example.NightLight.Lighting result = new org.Muhammad.example.NightLight.Lighting(this);
       result.lightOn_ = lightOn_;
       result.lightOff_ = lightOff_;
+      result.changeColour_ = changeColour_;
       onBuilt();
       return result;
     }
@@ -445,6 +499,10 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getLightOff().isEmpty()) {
         lightOff_ = other.lightOff_;
+        onChanged();
+      }
+      if (!other.getChangeColour().isEmpty()) {
+        changeColour_ = other.changeColour_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -610,6 +668,75 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       lightOff_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object changeColour_ = "";
+    /**
+     * <code>string change_colour = 3;</code>
+     */
+    public java.lang.String getChangeColour() {
+      java.lang.Object ref = changeColour_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        changeColour_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string change_colour = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getChangeColourBytes() {
+      java.lang.Object ref = changeColour_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        changeColour_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string change_colour = 3;</code>
+     */
+    public Builder setChangeColour(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      changeColour_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string change_colour = 3;</code>
+     */
+    public Builder clearChangeColour() {
+      
+      changeColour_ = getDefaultInstance().getChangeColour();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string change_colour = 3;</code>
+     */
+    public Builder setChangeColourBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      changeColour_ = value;
       onChanged();
       return this;
     }
