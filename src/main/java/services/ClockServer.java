@@ -11,15 +11,11 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 import io.grpc.stub.StreamObserver;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 import org.Muhammad.example.NightLight.LightGrpc;
-import org.Muhammad.example.NightLight.LightOffRequest;
-import org.Muhammad.example.NightLight.LightOnRequest;
-import org.Muhammad.example.NightLight.Lighting;
 import org.Muhammad.example.clock.ClockActionResponse;
 import org.Muhammad.example.clock.ClockGrpc;
 import org.Muhammad.example.clock.ClockResetRequest;
@@ -35,9 +31,8 @@ import serviceui.ServiceUI;
 public class ClockServer {
 
     private static final Logger logger = Logger.getLogger(ClockServer.class.getName());
-    private LightGrpc.LightBlockingStub lightBlockingStub;
     private ManagedChannel channel;
-    //NightLightClient nightLightClient = new NightLightClient();
+    NightLightClient nightLightClient = new NightLightClient();
 
     /* The port on which the server should run */
     private int port = 50059;
@@ -118,7 +113,7 @@ public class ClockServer {
         @Override
         public void clockAction(com.google.protobuf.Empty request, io.grpc.stub.StreamObserver<ClockActionResponse> responseObserver) {
 
-            //nightLightClient.serviceAdded(new ServiceDescription("127.0.0.1", 50055));
+            nightLightClient.serviceAdded(new ServiceDescription("127.0.0.1", 50055));
             Timer t = new Timer();
             t.schedule(new RemindTask(responseObserver), 0, 2000);
 
@@ -138,17 +133,10 @@ public class ClockServer {
                     ClockActionResponse status = ClockActionResponse.newBuilder().setClockTime(time).build();
                     ui.append("Clock Time: " + status.getClockTime() + "\n");
                     if (time == 18) {
-                        //nightLightClient.lightOn();
-//                        Lighting lighting = Lighting.newBuilder().setLightOn("Please Turn Light On").build();
-//                        LightOnRequest lightOnRequest = LightOnRequest.newBuilder().setLighting(lighting).build();
-//                        lightBlockingStub.lightOn(lightOnRequest);
-
+                        nightLightClient.lightOn();
+                        
                     } else if (time == 6) {
-                        //nightLightClient.lightOff();
-//                        Lighting lighting = Lighting.newBuilder().setLightOff("Please turn Light Off").build();
-//                        LightOffRequest lightOffRequest = LightOffRequest.newBuilder().setLighting(lighting).build();
-//                        lightBlockingStub.lightOff(lightOffRequest);
-
+                        nightLightClient.lightOff();
                     }
                     obj.onNext(status);
                     time += 1;
