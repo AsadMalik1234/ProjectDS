@@ -31,6 +31,7 @@ import serviceui.ServiceUI;
 public class ClockServer {
 
     private static final Logger logger = Logger.getLogger(ClockServer.class.getName());
+    private LightGrpc.LightBlockingStub lightBlockingStub;
     private ManagedChannel channel;
     NightLightClient nightLightClient = new NightLightClient();
 
