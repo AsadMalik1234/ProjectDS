@@ -19,6 +19,7 @@ import org.Muhammad.example.clock.ClockGrpc;
 import org.Muhammad.example.clock.ClockResetRequest;
 import org.Muhammad.example.clock.ClockResetResponse;
 import client.NightLightHeadlessClient;
+import client.ServiceDescription;
 
 import serviceui.Printer;
 import serviceui.ServiceUI;
@@ -73,7 +74,7 @@ public class ClockServer {
         final ClockServer server = new ClockServer();
         server.start();
         server.blockUntilShutdown();
-    
+    }
 
     private class ClockImpl extends ClockGrpc.ClockImplBase {
 
