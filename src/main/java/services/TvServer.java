@@ -89,7 +89,7 @@ public class TvServer {
                 ui.append(tvModeRequested);
 
                 if (tvStatus == 0) {
-                    tvModePerformed = "TV turned on. Channel is "+channel;
+                    tvModePerformed = "TV turned on. Channel is " + channel;
                     tvStatus = 1;
                 } else if (tvStatus == 1) {
                     tvModePerformed = "TV already turned on";

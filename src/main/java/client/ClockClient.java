@@ -106,11 +106,11 @@ public class ClockClient implements ServiceObserver {
     }
 
     public void resetClock() {
-        
+
         ClockResetRequest clockResetRequest = ClockResetRequest.newBuilder().setClockResetRequest("Please reset clock").build();
-        
+
         ClockResetResponse clockResetResponse = blockingStub.resetClock(clockResetRequest);
-        
+
         System.out.println(clockResetResponse.getClockResetResponse());
         ui.append(clockResetResponse.getClockResetResponse());
 

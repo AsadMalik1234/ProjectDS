@@ -7,12 +7,15 @@ package clientui;
 
 import client.SpeakerClient;
 import serviceui.Printer;
+
 /**
  *
  * @author asadmalik
  */
 public class SpeakerClientGUI extends javax.swing.JFrame {
-private SpeakerClient client;
+
+    private SpeakerClient client;
+
     /**
      * Creates new form SpeakerClientGUI
      */
@@ -21,12 +24,9 @@ private SpeakerClient client;
     }
 
     public SpeakerClientGUI(SpeakerClient aThis) {
-     this();
-       this.client = aThis;
+        this();
+        this.client = aThis;
     }
-
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,15 +135,15 @@ private SpeakerClient client;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       client.speakerMode("VolumeDown");
+        client.speakerMode("VolumeDown");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       client.speakerAction("SpeakerOn");
+        client.speakerAction("SpeakerOn");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       client.speakerMode("VolumeUp");
+        client.speakerMode("VolumeUp");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -151,7 +151,7 @@ private SpeakerClient client;
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       client.speakerAction("SpeakerOff");
+        client.speakerAction("SpeakerOff");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -188,15 +188,15 @@ private SpeakerClient client;
             }
         });
     }
-    
+
     public void append(String string) {
         jTextArea2.append("\n" + string);
     }
 
     public void clear() {
-       jTextArea2.setText("");
+        jTextArea2.setText("");
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

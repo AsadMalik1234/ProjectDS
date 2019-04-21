@@ -94,13 +94,13 @@ public class ClockServer {
             String serviceType = "_Clock._udp.local.";
             ui = new ServiceUI(name + serviceType);
         }
-                
+
         public void resetClock(ClockResetRequest request, StreamObserver<ClockResetResponse> responseObserver) {
-            
+
             String resetRequest = request.getClockResetRequest();
             ui.append(resetRequest);
             time = 0;
-            
+
             ClockResetResponse response = ClockResetResponse.newBuilder().setClockResetResponse("Clock Reset").build();
 
             responseObserver.onNext(response);
@@ -108,7 +108,7 @@ public class ClockServer {
             // complete the RPC call
             responseObserver.onCompleted();
         }
-        
+
         @Override
         public void clockAction(com.google.protobuf.Empty request, io.grpc.stub.StreamObserver<ClockActionResponse> responseObserver) {
 

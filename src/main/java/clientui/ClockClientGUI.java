@@ -12,7 +12,9 @@ import client.ClockClient;
  * @author asadmalik
  */
 public class ClockClientGUI extends javax.swing.JFrame {
-private ClockClient client;
+
+    private ClockClient client;
+
     /**
      * Creates new form ClockClientGUI
      */
@@ -21,8 +23,8 @@ private ClockClient client;
     }
 
     public ClockClientGUI(ClockClient aThis) {
-           this();
-       this.client = aThis;
+        this();
+        this.client = aThis;
     }
 
     /**
@@ -91,7 +93,7 @@ private ClockClient client;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       client.clockAction();
+        client.clockAction();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -132,14 +134,13 @@ private ClockClient client;
             }
         });
     }
-    
-    
+
     public void append(String string) {
         jTextArea1.append("\n" + string);
     }
 
     public void clear() {
-       jTextArea1.setText("");
+        jTextArea1.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

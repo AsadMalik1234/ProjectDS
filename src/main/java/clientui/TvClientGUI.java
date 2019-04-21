@@ -12,7 +12,9 @@ import client.TvClient;
  * @author asadmalik
  */
 public class TvClientGUI extends javax.swing.JFrame {
-private TvClient client;
+
+    private TvClient client;
+
     /**
      * Creates new form TvClientGUI
      */
@@ -21,8 +23,8 @@ private TvClient client;
     }
 
     public TvClientGUI(TvClient aThis) {
-            this();
-       this.client = aThis;
+        this();
+        this.client = aThis;
     }
 
     /**
@@ -105,7 +107,7 @@ private TvClient client;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      client.tvMode("TvOff");
+        client.tvMode("TvOff");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -113,7 +115,7 @@ private TvClient client;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       client.tvChannel();
+        client.tvChannel();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

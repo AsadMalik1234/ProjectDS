@@ -5,7 +5,6 @@
  */
 package clientui;
 
-
 import client.NightLightClient;
 import serviceui.Printer;
 
@@ -13,9 +12,10 @@ import serviceui.Printer;
  *
  * @author asadmalik
  */
-public class NightLightClientGUI extends javax.swing.JFrame implements Printer{
+public class NightLightClientGUI extends javax.swing.JFrame implements Printer {
 
     private NightLightClient client;
+
     /**
      * Creates new form night
      */
@@ -24,11 +24,9 @@ public class NightLightClientGUI extends javax.swing.JFrame implements Printer{
     }
 
     public NightLightClientGUI(NightLightClient aThis) {
-       this();
+        this();
         this.client = aThis;
     }
-
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,23 +103,17 @@ public class NightLightClientGUI extends javax.swing.JFrame implements Printer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       client.lightOn();
+        client.lightOn();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          client.lightOff();
+        client.lightOff();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       client.changeColour();
+        client.changeColour();
     }//GEN-LAST:event_jButton3ActionPerformed
-    
-     
-      
-     
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -160,8 +152,6 @@ public class NightLightClientGUI extends javax.swing.JFrame implements Printer{
         });
     }
 
- 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -170,12 +160,12 @@ public class NightLightClientGUI extends javax.swing.JFrame implements Printer{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-  
+
     public void append(String string) {
         jTextArea1.append("\n" + string);
     }
 
     public void clear() {
-       jTextArea1.setText("");
+        jTextArea1.setText("");
     }
 }

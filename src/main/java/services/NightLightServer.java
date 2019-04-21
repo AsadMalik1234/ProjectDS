@@ -149,7 +149,7 @@ public class NightLightServer {
                     colorCode = 0;
                     lightstatus = "Color changed to " + colors[colorCode];
                 }
-            }else{
+            } else {
                 lightstatus = "Please turn on the light";
             }
 
